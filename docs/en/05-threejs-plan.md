@@ -52,11 +52,11 @@ The scope started in this session was **P0 to P3**; at the user's request it was
 | Phase | Status | Verification |
 | --- | --- | --- |
 | P0 | Done | `vite build` succeeds. 0 console errors in Chrome (WebGPU) |
-| P1 Data Pigment | Done | Swirling flow and speed-based pigment colours confirmed (`../assets/data-pigment.png`) |
-| P2 Data Universe | Done | Morph from grid to cluster nebula confirmed (`../assets/data-universe.png`) |
-| P3 Latent Walk | Done | Sphere, torus knot, wave sheet cycle confirmed (`../assets/latent-walk.png`) |
+| P1 Data Pigment | Done | Swirling flow and speed-based pigment colours confirmed (`../assets/data-pigment.jpg`) |
+| P2 Data Universe | Done | Morph from grid to cluster nebula confirmed (`../assets/data-universe.jpg`) |
+| P3 Latent Walk | Done | Sphere, torus knot, wave sheet cycle confirmed (`../assets/latent-walk.jpg`) |
 | P4 Infinity Room | Done | Shader inside the cube confirmed |
-| Extra scenes 5 to 12 | Done | 0 console errors in all 12 scenes (`../assets/scenes-4-12.png`) |
+| Extra scenes 5 to 12 | Done | 0 console errors in all 12 scenes (`../assets/scenes-4-12.jpg`) |
 | Part of P7 | Done | Korean/English toggle (saved in localStorage), fullscreen button and F key (Esc to exit), shortcuts, auto tour (A), pause, hidden UI |
 | P5, P6, rest of P7 | Pending | Real-data UMAP, live weather, sound, scene crossfades |
 

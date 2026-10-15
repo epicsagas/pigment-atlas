@@ -52,11 +52,11 @@ export function create(renderer) {
 | 단계 | 상태 | 검증 |
 | --- | --- | --- |
 | P0 | 완료 | `vite build` 성공. Chrome(WebGPU)에서 콘솔 오류 0건 |
-| P1 Data Pigment | 완료 | 소용돌이 흐름과 속도별 안료색 확인(`docs/assets/data-pigment.png`) |
-| P2 Data Universe | 완료 | 격자에서 군집 성운으로 바뀌는 모프 확인(`docs/assets/data-universe.png`) |
-| P3 Latent Walk | 완료 | 구, 토러스 매듭, 파동 면 순환 확인(`docs/assets/latent-walk.png`) |
+| P1 Data Pigment | 완료 | 소용돌이 흐름과 속도별 안료색 확인(`docs/assets/data-pigment.jpg`) |
+| P2 Data Universe | 완료 | 격자에서 군집 성운으로 바뀌는 모프 확인(`docs/assets/data-universe.jpg`) |
+| P3 Latent Walk | 완료 | 구, 토러스 매듭, 파동 면 순환 확인(`docs/assets/latent-walk.jpg`) |
 | P4 Infinity Room | 완료 | 큐브 내부 셰이더 확인 |
-| 확장 장면 5~12 | 완료 | 12개 장면 모두 콘솔 오류 0건(`docs/assets/scenes-4-12.png`) |
+| 확장 장면 5~12 | 완료 | 12개 장면 모두 콘솔 오류 0건(`docs/assets/scenes-4-12.jpg`) |
 | P7 일부 | 완료 | 한/영 토글(localStorage 저장), 전체화면 버튼과 F 키(Esc 복귀), 단축키, 자동 순환(A), 일시정지, UI 숨김 |
 | P5, P6, P7 나머지 | 대기 | 실데이터 UMAP, 실시간 기상, 사운드, 장면 크로스페이드 |
 
