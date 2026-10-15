@@ -2,6 +2,8 @@
 
 **한국어** | [English](README.en.md)
 
+**[온라인 데모 보기](https://epicsagas.github.io/pigment-atlas/)** (WebGPU 지원 브라우저 권장)
+
 데이터를 안료로 삼아 미시 세계부터 우주까지 100개 현상을 그리는 three.js 작품집입니다. 미디어 아티스트 Refik Anadol의 작업을 심층 조사한 리서치 아카이브와 함께, 그 시각 문법을 연구하는 오마주로 만들었으며 작가의 원본 자산은 사용하지 않습니다.
 
 > [!IMPORTANT]
@@ -106,11 +108,21 @@ node scripts/smoke.mjs        # 100개 장면의 노드 그래프 생성 검사(
 npx --no-install vite build
 ```
 
-![Data Pigment](docs/assets/data-pigment.png)
-![Data Universe](docs/assets/data-universe.png)
-![Latent Walk](docs/assets/latent-walk.png)
-![Scenes 4~12](docs/assets/scenes-4-12.png)
+![Data Pigment](docs/assets/data-pigment.jpg)
+![Data Universe](docs/assets/data-universe.jpg)
+![Latent Walk](docs/assets/latent-walk.jpg)
+![Scenes 4~12](docs/assets/scenes-4-12.jpg)
 
-주제별 접촉 인화: `docs/assets/theme-01.png` ~ `docs/assets/theme-10.png`
+주제별 접촉 인화: `docs/assets/theme-01.jpg` ~ `docs/assets/theme-10.jpg`
 
 구현 진행 상황과 남은 단계는 `docs/05-threejs-plan.md`를 참고하세요.
+
+## 라이선스
+
+| 대상 | 라이선스 |
+| --- | --- |
+| 코드(`src/`, `scripts/`, `index.html`, 설정 파일) | [MIT](LICENSE) |
+| 문서, 데이터, 이미지, 변환본(`docs/`, `data/`, `exports/`, README) | [CC BY 4.0](LICENSE-CC-BY-4.0) |
+
+- 문서에 인용한 제3자의 글, 작품명, 수치는 각 출처의 권리를 따릅니다. 출처는 [`docs/sources.md`](docs/sources.md)에 있습니다.
+- 이 프로젝트는 Refik Anadol, Refik Anadol Studio, DATALAND와 관련이 없는 독립적인 기법 연구이자 오마주입니다.

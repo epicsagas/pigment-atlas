@@ -2,6 +2,8 @@
 
 [한국어](README.md) | **English**
 
+**[Open the live demo](https://epicsagas.github.io/pigment-atlas/)** (a WebGPU-capable browser is recommended)
+
 A three.js collection that paints 100 phenomena, from the microscopic to the cosmic, using data as pigment. It was made as an homage that studies the visual grammar of media artist Refik Anadol, alongside a research archive on his work. None of the artist's original assets are used.
 
 > [!IMPORTANT]
@@ -106,11 +108,21 @@ node scripts/smoke.mjs        # builds every scene's node graph (no GPU needed)
 npx --no-install vite build
 ```
 
-![Data Pigment](docs/assets/data-pigment.png)
-![Data Universe](docs/assets/data-universe.png)
-![Latent Walk](docs/assets/latent-walk.png)
-![Scenes 4~12](docs/assets/scenes-4-12.png)
+![Data Pigment](docs/assets/data-pigment.jpg)
+![Data Universe](docs/assets/data-universe.jpg)
+![Latent Walk](docs/assets/latent-walk.jpg)
+![Scenes 4~12](docs/assets/scenes-4-12.jpg)
 
-Contact sheets per theme: `docs/assets/theme-01.png` to `docs/assets/theme-10.png`
+Contact sheets per theme: `docs/assets/theme-01.jpg` to `docs/assets/theme-10.jpg`
 
 See `docs/en/05-threejs-plan.md` for implementation progress and remaining steps.
+
+## License
+
+| Scope | License |
+| --- | --- |
+| Code (`src/`, `scripts/`, `index.html`, config files) | [MIT](LICENSE) |
+| Documents, data, images and exports (`docs/`, `data/`, `exports/`, READMEs) | [CC BY 4.0](LICENSE-CC-BY-4.0) |
+
+- Third-party text, work titles and figures quoted in the documents remain subject to the rights of their sources, listed in [`docs/en/sources.md`](docs/en/sources.md).
+- This is an independent technique study and homage, not affiliated with Refik Anadol, Refik Anadol Studio or DATALAND.
