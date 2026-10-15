@@ -81,7 +81,9 @@ Open `http://localhost:5173`. A WebGPU-capable browser is recommended; otherwise
 | 9 Countryside | 81-90 | Rice Terraces, Wind Turbines, Sunflower Field, Waterwheel |
 | 10 Physics & Math | 91-100 | Lorenz Attractor, Chladni Plate, Mandelbrot Set, Prism Dispersion |
 
-The buttons at the top right open the scene index and shortcut help, switch between Korean and English (saved in localStorage), and toggle fullscreen.
+The buttons at the top right open the GitHub repository, the scene index and shortcut help, switch between Korean and English (saved in localStorage), toggle fullscreen, and hide the menu.
+
+Two URL options are available. A number in the hash such as `#42` starts at that scene, and `?webgl` forces the WebGL2 backend even in WebGPU-capable browsers (for fallback testing). Example: `https://epicsagas.github.io/pigment-atlas/?webgl#52`
 
 ### Keyboard shortcuts
 
@@ -114,6 +116,10 @@ npx --no-install vite build
 ![Scenes 4~12](docs/assets/scenes-4-12.jpg)
 
 Contact sheets per theme: `docs/assets/theme-01.jpg` to `docs/assets/theme-10.jpg`
+
+### Deployment
+
+Pushing to `main` triggers GitHub Actions (`.github/workflows/pages.yml`), which runs the smoke test, builds with `--base=/pigment-atlas/` and publishes to GitHub Pages.
 
 See `docs/en/05-threejs-plan.md` for implementation progress and remaining steps.
 

@@ -81,7 +81,9 @@ npm run dev
 | 9 시골 | 81~90 | 다랑논, 풍력 발전기, 해바라기 밭, 물레방아 |
 | 10 물리와 수학 | 91~100 | 로렌츠 끌개, 클라드니 도형, 망델브로 집합, 프리즘 |
 
-우측 상단 버튼으로 전체 목록, 단축키 도움말, 한국어/English 전환(localStorage에 저장), 전체화면을 쓸 수 있습니다.
+우측 상단 버튼으로 GitHub 저장소 열기, 전체 목록, 단축키 도움말, 한국어/English 전환(localStorage에 저장), 전체화면, 메뉴 숨기기를 쓸 수 있습니다.
+
+주소 옵션은 두 가지입니다. `#42`처럼 해시에 번호를 붙이면 그 장면에서 시작하고, `?webgl`을 붙이면 WebGPU를 지원하는 브라우저에서도 WebGL2 백엔드로 강제 실행합니다(폴백 점검용). 예: `https://epicsagas.github.io/pigment-atlas/?webgl#52`
 
 ### 단축키
 
@@ -114,6 +116,10 @@ npx --no-install vite build
 ![Scenes 4~12](docs/assets/scenes-4-12.jpg)
 
 주제별 접촉 인화: `docs/assets/theme-01.jpg` ~ `docs/assets/theme-10.jpg`
+
+### 배포
+
+`main` 브랜치에 푸시하면 GitHub Actions(`.github/workflows/pages.yml`)가 스모크 테스트를 돌리고 `--base=/pigment-atlas/`로 빌드한 뒤 GitHub Pages에 게시합니다.
 
 구현 진행 상황과 남은 단계는 `docs/05-threejs-plan.md`를 참고하세요.
 

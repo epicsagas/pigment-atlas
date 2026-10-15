@@ -58,6 +58,8 @@ export function create(renderer) {
 | P4 Infinity Room | 완료 | 큐브 내부 셰이더 확인 |
 | 확장 장면 5~12 | 완료 | 12개 장면 모두 콘솔 오류 0건(`docs/assets/scenes-4-12.jpg`) |
 | P7 일부 | 완료 | 한/영 토글(localStorage 저장), 전체화면 버튼과 F 키(Esc 복귀), 단축키, 자동 순환(A), 일시정지, UI 숨김 |
+| WebGL2 폴백 점검 | 완료 | `?webgl` 주소 옵션으로 WebGPU 브라우저에서도 WebGL2 백엔드를 강제해 확인 |
+| 배포 | 완료 | GitHub Actions에서 스모크 테스트와 빌드 후 GitHub Pages 게시(`https://epicsagas.github.io/pigment-atlas/`) |
 | P5, P6, P7 나머지 | 대기 | 실데이터 UMAP, 실시간 기상, 사운드, 장면 크로스페이드 |
 
 구현 중 발견해 고친 문제: `Timer.reset()`은 `performance.now()` 기준으로 리셋되지만 `update()`는 rAF 타임스탬프를 받습니다. 그래서 리셋 직후 경과 시간이 음수가 되어 Latent Walk 팔레트 인덱스가 -1이 되었습니다. 타이머는 계속 흐르게 두고 장면 시작 시점을 빼는 방식으로 수정했습니다.

@@ -58,6 +58,8 @@ The scope started in this session was **P0 to P3**; at the user's request it was
 | P4 Infinity Room | Done | Shader inside the cube confirmed |
 | Extra scenes 5 to 12 | Done | 0 console errors in all 12 scenes (`../assets/scenes-4-12.jpg`) |
 | Part of P7 | Done | Korean/English toggle (saved in localStorage), fullscreen button and F key (Esc to exit), shortcuts, auto tour (A), pause, hidden UI |
+| WebGL2 fallback check | Done | The `?webgl` URL option forces the WebGL2 backend even in WebGPU browsers |
+| Deployment | Done | GitHub Actions runs the smoke test and build, then publishes to GitHub Pages (`https://epicsagas.github.io/pigment-atlas/`) |
 | P5, P6, rest of P7 | Pending | Real-data UMAP, live weather, sound, scene crossfades |
 
 A problem found and fixed during implementation: `Timer.reset()` resets against `performance.now()`, but `update()` receives rAF timestamps. Right after a reset the elapsed time went negative, so the Latent Walk palette index became -1. The fix lets the timer keep running and subtracts the scene's start time instead.
