@@ -11,7 +11,7 @@ const UI = {
 	ko: {
 		note: 'Refik Anadol 작업의 시각 문법을 연구하는 오마주입니다. 원본 자산을 사용하지 않습니다.',
 		fullscreen: '전체화면', exitFullscreen: '창 모드', help: '단축키', index: '목록', lang: 'EN', hideUI: '메뉴 숨기기', showUI: '메뉴 보이기',
-		paused: '일시정지', tour: '자동 순환',
+		paused: '일시정지', tour: '자동 순환', pause: '일시정지 / 재생', prev: '이전 장면', next: '다음 장면', reset: '카메라 초기화', tapToShow: '화면을 탭하면 메뉴가 다시 나타납니다',
 		keys: [
 			[ '숫자', '장면 번호로 이동 (예: 4 2 = 42번, Enter로 즉시)' ], [ '← →', '이전 / 다음 장면' ], [ '↑ ↓', '이전 / 다음 주제' ],
 			[ 'G', '전체 목록' ], [ 'F', '전체화면 (Esc로 복귀)' ], [ 'L', '한국어 / English' ], [ 'Space', '일시정지' ],
@@ -21,7 +21,7 @@ const UI = {
 	en: {
 		note: 'An homage studying the visual grammar of Refik Anadol\'s work. No original assets are used.',
 		fullscreen: 'Fullscreen', exitFullscreen: 'Windowed', help: 'Shortcuts', index: 'Index', lang: '한국어', hideUI: 'Hide menus', showUI: 'Show menus',
-		paused: 'Paused', tour: 'Auto tour',
+		paused: 'Paused', tour: 'Auto tour', pause: 'Pause / play', prev: 'Previous scene', next: 'Next scene', reset: 'Reset camera', tapToShow: 'Tap the screen to bring the menus back',
 		keys: [
 			[ 'Digits', 'Jump to scene number (e.g. 4 2 = #42, Enter jumps now)' ], [ '← →', 'Previous / next scene' ], [ '↑ ↓', 'Previous / next theme' ],
 			[ 'G', 'Scene index' ], [ 'F', 'Fullscreen (Esc to exit)' ], [ 'L', '한국어 / English' ], [ 'Space', 'Pause' ],
@@ -50,6 +50,7 @@ timer.connect( document );
 const state = { index: 0, lang: localStorage.getItem( 'lang' ) === 'en' ? 'en' : 'ko', paused: false, tour: false, tourStart: 0, digits: '', hideUI: localStorage.getItem( 'hideUI' ) === '1' };
 let active, pipeline, sceneStart = 0, digitTimer, toastTimer, mouseTimer;
 
+const isTouch = matchMedia( '(hover: none)' ).matches;
 const sceneLabel = ( i ) => `${ String( i + 1 ).padStart( 3, '0' ) } ${ SCENES[ i ].meta.title[ state.lang ] }`;
 const themeStart = ( ti ) => SCENES.findIndex( ( s ) => s.theme === ti );
 
@@ -80,6 +81,15 @@ function load( index ) {
 
 }
 
+// Icon plus a text label that narrow screens hide; the label stays as the accessible name.
+function label( id, icon, text ) {
+
+	const b = $( id );
+	b.replaceChildren( icon, Object.assign( document.createElement( 'span' ), { className: 'label', textContent: text && ` ${ text }` } ) );
+	if ( text ) b.ariaLabel = b.title = text;
+
+}
+
 function button( text, on, onclick ) {
 
 	const b = document.createElement( 'button' );
@@ -103,13 +113,25 @@ function render() {
 	$( 'ref' ).textContent = current.meta.ref[ state.lang ];
 	$( 'note' ).textContent = t.note;
 	$( 'lang' ).textContent = t.lang;
-	$( 'fs' ).textContent = document.fullscreenElement ? t.exitFullscreen : t.fullscreen;
-	$( 'helpBtn' ).textContent = `? ${ t.help }`;
-	$( 'indexBtn' ).textContent = `▦ ${ t.index }`;
-	$( 'uiToggle' ).textContent = state.hideUI ? '◧' : `◨ ${ t.hideUI }`;
+	// iPhone Safari has no element fullscreen; hide the button there.
+	$( 'fs' ).hidden = ! document.fullscreenEnabled;
+	label( 'fs', '⛶', document.fullscreenElement ? t.exitFullscreen : t.fullscreen );
+	label( 'helpBtn', '?', t.help );
+	label( 'indexBtn', '▦', t.index );
+	label( 'uiToggle', state.hideUI ? '◧' : '◨', state.hideUI ? '' : t.hideUI );
+	for ( const [ id, text, on ] of [ [ 'prevBtn', t.prev ], [ 'nextBtn', t.next ], [ 'pauseBtn', t.pause, state.paused ], [ 'tourBtn', t.tour, state.tour ], [ 'resetBtn', t.reset ] ] ) {
+
+		$( id ).ariaLabel = $( id ).title = text;
+		$( id ).className = on ? 'on' : '';
+
+	}
+
+	$( 'pauseBtn' ).textContent = state.paused ? '▶' : '❚❚';
 	$( 'uiToggle' ).title = state.hideUI ? `${ t.showUI } (H)` : `${ t.hideUI } (H)`;
 	$( 'uiToggle' ).ariaLabel = $( 'uiToggle' ).title;
 	document.body.classList.toggle( 'hide-ui', state.hideUI );
+	// Narrow screens scroll these rows sideways; keep the current theme and scene in view.
+	for ( const id of [ 'themes', 'nav' ] ) $( id ).querySelector( '.on' )?.scrollIntoView( { block: 'nearest', inline: 'center' } );
 	$( 'status' ).textContent = [ state.digits && `#${ state.digits }`, state.paused && t.paused, state.tour && t.tour ].filter( Boolean ).join( ' · ' );
 
 	$( 'keys' ).replaceChildren( ...t.keys.flatMap( ( [ k, v ] ) => [ Object.assign( document.createElement( 'dt' ), { textContent: k } ), Object.assign( document.createElement( 'dd' ), { textContent: v } ) ] ) );
@@ -138,7 +160,7 @@ const toggleOverlay = ( id ) => {
 	$( id ).classList.toggle( 'open', open );
 
 };
-const toggleFullscreen = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+const toggleFullscreen = () => document.fullscreenEnabled && ( document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen() );
 const toggleLang = () => {
 
 	state.lang = state.lang === 'ko' ? 'en' : 'ko';
@@ -163,7 +185,23 @@ function toggleUI() {
 	state.hideUI = ! state.hideUI;
 	localStorage.setItem( 'hideUI', state.hideUI ? '1' : '0' );
 	render();
-	if ( state.hideUI ) toast( sceneLabel( state.index ) );
+	if ( state.hideUI ) toast( isTouch ? UI[ state.lang ].tapToShow : sceneLabel( state.index ) );
+
+}
+
+function togglePause() {
+
+	state.paused = ! state.paused;
+	timer.setTimescale( state.paused ? 0 : 1 );
+	render();
+
+}
+
+function toggleTour() {
+
+	state.tour = ! state.tour;
+	state.tourStart = timer.getElapsed();
+	render();
 
 }
 
@@ -184,6 +222,21 @@ addEventListener( 'pointermove', () => {
 
 } );
 
+// Touch: with menus hidden, a tap (not a drag or pinch) on the scene brings them back.
+let tap;
+renderer.domElement.addEventListener( 'pointerdown', ( e ) => tap = e.pointerType === 'touch' && e.isPrimary && { x: e.clientX, y: e.clientY, t: e.timeStamp } );
+renderer.domElement.addEventListener( 'pointerup', ( e ) => {
+
+	if ( tap && state.hideUI && e.timeStamp - tap.t < 300 && Math.hypot( e.clientX - tap.x, e.clientY - tap.y ) < 10 ) toggleUI();
+	tap = null;
+
+} );
+
+$( 'prevBtn' ).onclick = () => load( state.index - 1 );
+$( 'nextBtn' ).onclick = () => load( state.index + 1 );
+$( 'pauseBtn' ).onclick = togglePause;
+$( 'tourBtn' ).onclick = toggleTour;
+$( 'resetBtn' ).onclick = resetCamera;
 $( 'uiToggle' ).onclick = toggleUI;
 $( 'lang' ).onclick = toggleLang;
 $( 'fs' ).onclick = toggleFullscreen;
@@ -212,20 +265,8 @@ const SHORTCUTS = {
 		if ( document.fullscreenElement ) document.exitFullscreen();
 
 	},
-	' ': () => {
-
-		state.paused = ! state.paused;
-		timer.setTimescale( state.paused ? 0 : 1 );
-		render();
-
-	},
-	a: () => {
-
-		state.tour = ! state.tour;
-		state.tourStart = timer.getElapsed();
-		render();
-
-	}
+	' ': togglePause,
+	a: toggleTour
 };
 
 addEventListener( 'keydown', ( e ) => {

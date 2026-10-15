@@ -85,6 +85,8 @@ The buttons at the top right open the GitHub repository, the scene index and sho
 
 Two URL options are available. A number in the hash such as `#42` starts at that scene, and `?webgl` forces the WebGL2 backend even in WebGPU-capable browsers (for fallback testing). Example: `https://epicsagas.github.io/pigment-atlas/?webgl#52`
 
+On phones and tablets, buttons at the bottom (previous, next, pause, auto tour, reset camera) replace the shortcuts. Swipe the theme and scene rows sideways, and tap the screen once to bring hidden menus back. Browsers without fullscreen support (iPhone Safari) do not show the fullscreen button.
+
 ### Keyboard shortcuts
 
 | Key | Action |
