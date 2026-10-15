@@ -32,7 +32,8 @@ const UI = {
 
 const $ = ( id ) => document.getElementById( id );
 
-const renderer = new THREE.WebGPURenderer( { antialias: false } );
+// `?webgl` forces the WebGL 2 backend (fallback testing).
+const renderer = new THREE.WebGPURenderer( { antialias: false, forceWebGL: new URLSearchParams( location.search ).has( 'webgl' ) } );
 renderer.setPixelRatio( Math.min( devicePixelRatio, 2 ) );
 renderer.setSize( innerWidth, innerHeight );
 renderer.setClearColor( 0x000000 );
