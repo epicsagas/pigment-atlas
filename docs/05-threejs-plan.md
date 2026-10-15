@@ -1,5 +1,7 @@
 # three.js 구현 계획: Pigment Atlas (Refik Anadol 기법 연구)
 
+**한국어** | [English](en/05-threejs-plan.md)
+
 ## 0. 목표와 원칙
 
 - **목표**: Anadol 작업의 시각 문법(데이터 안료, Data Universe, 잠재 산책, 데이터 조각, Infinity Room)을 브라우저에서 실시간으로 재현하는 기법 연구 작품집을 만듭니다.

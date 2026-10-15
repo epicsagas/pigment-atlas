@@ -1,5 +1,7 @@
 # Refik Anadol 연표
 
+**한국어** | [English](en/02-timeline.md)
+
 조사 기준일 2026-10-15. 구조화된 전체 목록은 `../data/works.json`, `../data/works.csv`에 있습니다.
 
 ## 전체 흐름

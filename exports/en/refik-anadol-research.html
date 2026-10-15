@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-10-15" />
+  <title>Refik Anadol: In-Depth Research Report</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">body { font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #1b1f2a; }
+h1, h2, h3 { color: #0a1f6b; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+th, td { border: 1px solid #c9d2e3; padding: 0.35rem 0.5rem; vertical-align: top; }
+th { background: #eef3fb; }
+code, pre { font-family: Menlo, monospace; font-size: 0.85em; }
+pre { background: #f5f7fb; padding: 0.75rem; overflow-x: auto; white-space: pre-wrap; }
+blockquote { border-left: 3px solid #19c6d8; margin: 0; padding-left: 1rem; color: #4a556b; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Refik Anadol: In-Depth Research Report</h1>
+<p class="subtitle">Data as pigment, machine dreams as canvas</p>
+<p class="date">2026-10-15</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#refik-anadol-in-depth-research-report" id="toc-refik-anadol-in-depth-research-report">Refik Anadol: In-Depth
+Research Report</a>
+<ul>
+<li><a href="#summary" id="toc-summary">1. Summary</a></li>
+<li><a href="#life-and-formation" id="toc-life-and-formation">2. Life
+and formation</a>
+<ul>
+<li><a href="#intellectual-starting-points" id="toc-intellectual-starting-points">Intellectual starting
+points</a></li>
+</ul></li>
+<li><a href="#major-works-by-period" id="toc-major-works-by-period">3.
+Major works by period</a>
+<ul>
+<li><a href="#data-painting-on-architecture-2008-to-2015" id="toc-data-painting-on-architecture-2008-to-2015">3.1 Data painting on
+architecture (2008 to 2015)</a></li>
+<li><a href="#machine-hallucinations-2016-to-2023" id="toc-machine-hallucinations-2016-to-2023">3.2 Machine hallucinations
+(2016 to 2023)</a></li>
+<li><a href="#in-house-models-based-on-nature-and-architecture-2024-to-present" id="toc-in-house-models-based-on-nature-and-architecture-2024-to-present">3.3
+In-house models based on nature and architecture (2024 to
+present)</a></li>
+</ul></li>
+<li><a href="#case-study-unsupervised-moma-2022-to-2023" id="toc-case-study-unsupervised-moma-2022-to-2023">4. Case study:
+<em>Unsupervised</em> (MoMA, 2022 to 2023)</a></li>
+<li><a href="#dataland-2026" id="toc-dataland-2026">5. DATALAND
+(2026)</a></li>
+<li><a href="#visual-grammar-recurring-vocabulary" id="toc-visual-grammar-recurring-vocabulary">6. Visual grammar:
+recurring vocabulary</a></li>
+<li><a href="#criticism-and-debate" id="toc-criticism-and-debate">7.
+Criticism and debate</a></li>
+<li><a href="#awards-selected" id="toc-awards-selected">8. Awards
+(selected)</a></li>
+<li><a href="#implications-for-implementation" id="toc-implications-for-implementation">9. Implications for
+implementation</a></li>
+</ul></li>
+<li><a href="#refik-anadol-timeline" id="toc-refik-anadol-timeline">Refik Anadol Timeline</a>
+<ul>
+<li><a href="#overview" id="toc-overview">Overview</a></li>
+<li><a href="#evolution-of-technique" id="toc-evolution-of-technique">Evolution of technique</a></li>
+<li><a href="#major-exhibition-periods-2022-to-2026" id="toc-major-exhibition-periods-2022-to-2026">Major exhibition periods,
+2022 to 2026</a></li>
+</ul></li>
+<li><a href="#technique-breakdown-refik-anadols-data-aesthetics-pipeline" id="toc-technique-breakdown-refik-anadols-data-aesthetics-pipeline">Technique
+Breakdown: Refik Anadol’s Data Aesthetics Pipeline</a>
+<ul>
+<li><a href="#overall-pipeline" id="toc-overall-pipeline">1. Overall
+pipeline</a></li>
+<li><a href="#stage-by-stage" id="toc-stage-by-stage">2. Stage by
+stage</a>
+<ul>
+<li><a href="#collection-from-public-data-to-permission-based-data" id="toc-collection-from-public-data-to-permission-based-data">2.1
+Collection: from “public data” to “permission-based data”</a></li>
+<li><a href="#training-and-embedding" id="toc-training-and-embedding">2.2 Training and embedding</a></li>
+<li><a href="#latent-space-exploration" id="toc-latent-space-exploration">2.3 Latent space exploration</a></li>
+<li><a href="#real-time-rendering" id="toc-real-time-rendering">2.4
+Real-time rendering</a></li>
+<li><a href="#architectural-display" id="toc-architectural-display">2.5
+Architectural display</a></li>
+</ul></li>
+<li><a href="#mapping-to-the-web-three.js" id="toc-mapping-to-the-web-three.js">3. Mapping to the web
+(three.js)</a></li>
+</ul></li>
+<li><a href="#scene-catalog-10-themes-10-100" id="toc-scene-catalog-10-themes-10-100">Scene Catalog: 10 Themes × 10 =
+100</a>
+<ul>
+<li><a href="#machine-dreams" id="toc-machine-dreams">1 Machine
+Dreams</a></li>
+<li><a href="#atmosphere" id="toc-atmosphere">2 Atmosphere</a></li>
+<li><a href="#ocean-water" id="toc-ocean-water">3 Ocean &amp;
+Water</a></li>
+<li><a href="#forest-life" id="toc-forest-life">4 Forest &amp;
+Life</a></li>
+<li><a href="#earth-geology" id="toc-earth-geology">5 Earth &amp;
+Geology</a></li>
+<li><a href="#cosmos" id="toc-cosmos">6 Cosmos</a></li>
+<li><a href="#micro" id="toc-micro">7 Micro</a></li>
+<li><a href="#city" id="toc-city">8 City</a></li>
+<li><a href="#countryside" id="toc-countryside">9 Countryside</a></li>
+<li><a href="#physics-math" id="toc-physics-math">10 Physics &amp;
+Math</a></li>
+</ul></li>
+<li><a href="#sources" id="toc-sources">Sources</a>
+<ul>
+<li><a href="#primary-sources-artist-institutions" id="toc-primary-sources-artist-institutions">Primary sources (artist,
+institutions)</a></li>
+<li><a href="#secondary-sources-encyclopedia-press-criticism" id="toc-secondary-sources-encyclopedia-press-criticism">Secondary
+sources (encyclopedia, press, criticism)</a></li>
+<li><a href="#conflicts-between-sources" id="toc-conflicts-between-sources">Conflicts between sources</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="refik-anadol-in-depth-research-report">Refik Anadol: In-Depth
+Research Report</h1>
+<blockquote>
+<p>Research date: 2026-10-15. “Refik Anotol” in the original request was
+interpreted as the Turkish American media artist <strong>Refik
+Anadol</strong>. Figures and dates follow the sources in
+<code>sources.md</code>; where sources disagree, both values are given
+in the text.</p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<p>Refik Anadol (born November 7, 1985, in Istanbul) is a media artist
+who works with “data as pigment and machine intelligence as
+collaborator.” In 2014 he founded Refik Anadol Studio (RAS) in Los
+Angeles with Efsun Erkılıç, and on June 20, 2026, he opened DATALAND,
+which he calls “the world’s first museum of AI arts,” at The Grand LA in
+downtown Los Angeles.</p>
+<p>His work falls into three broad periods.</p>
+<ol type="1">
+<li><strong>Data painting on architecture (2008 to 2015)</strong>:
+projection mapping turns building surfaces and whole rooms into moving
+canvases. Key works: <em>Infinity Room</em> and <em>Visions of America:
+Amériques</em>.</li>
+<li><strong>Machine hallucinations (2016 to 2023)</strong>: after the
+Google AMI residency, he visualizes the latent space of huge archives
+with GANs and dimensionality reduction (t-SNE, UMAP). This period
+includes <em>Archive Dreaming</em>, <em>WDCH Dreams</em>, the
+<em>Machine Hallucinations</em> series, <em>Unsupervised</em> at MoMA,
+and the exterior of the Las Vegas Sphere.</li>
+<li><strong>In-house models based on nature and architecture (2024 to
+present)</strong>: the Large Nature Model (LNM), trained on
+permission-based nature data; the Large Architecture Model (LAM),
+fine-tuned on architectural archives; and DATALAND, which makes them
+permanent.</li>
+</ol>
+<p>Opinion is sharply divided. MoMA added <em>Unsupervised</em> to its
+collection (its first generative artwork), and visitors stayed an
+average of 38 minutes. The critic Jerry Saltz, by contrast, dismissed
+the same work as “a massive techno lava lamp” and “a half-million-dollar
+screensaver.” This tension is itself central to understanding Anadol’s
+work.</p>
+<h2 id="life-and-formation">2. Life and formation</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Birth</td>
+<td>1985-11-07, Istanbul, Türkiye. Family of teachers</td>
+</tr>
+<tr>
+<td>Childhood turning points</td>
+<td>Taught himself programming on a Commodore 64 at age 8. The same year
+he saw <em>Blade Runner</em> and was captivated by the replicant whose
+memories are implanted</td>
+</tr>
+<tr>
+<td>Undergraduate</td>
+<td>BA in Photography and Video, Istanbul Bilgi University (2009)</td>
+</tr>
+<tr>
+<td>Master’s 1</td>
+<td>MFA in Visual Communication, same university (2011)</td>
+</tr>
+<tr>
+<td>Master’s 2</td>
+<td>MFA in Design Media Arts, UCLA (2014). Mentored by Casey Reas,
+Jennifer Steinkamp, and Christian Moeller</td>
+</tr>
+<tr>
+<td>Teaching</td>
+<td>Lecturer, UCLA Design Media Arts</td>
+</tr>
+<tr>
+<td>Studio</td>
+<td>Refik Anadol Studio (2014, a 1960s warehouse in LA’s Frogtown). A
+team of designers, architects, data scientists, and researchers from 10
+countries speaking 12 languages. Runs the research unit RAS LAB</td>
+</tr>
+<tr>
+<td>Museum</td>
+<td>DATALAND (opened 2026-06-20, The Grand LA)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="intellectual-starting-points">Intellectual starting points</h3>
+<ul>
+<li><strong>Lev Manovich’s “augmented space”</strong>: as an
+undergraduate he read this paper and was struck by its claim that
+collaboration between architects and artists could make “the invisible
+flow of data visible.” He began using the term “data painting” with his
+first outdoor projection in 2008, and this became his working principle
+of using “light as material and data as pigment.”</li>
+<li><strong>Blade Runner and memory</strong>: the motif of memories
+implanted in a machine mind later leads to the core question of Machine
+Hallucinations: if a machine can learn, it can also remember, dream, and
+hallucinate.</li>
+<li><strong>DeepDream (2016)</strong>: Google’s release of the DeepDream
+algorithm during his first Google AMI residency was the direct trigger
+for that question.</li>
+</ul>
+<h2 id="major-works-by-period">3. Major works by period</h2>
+<h3 id="data-painting-on-architecture-2008-to-2015">3.1 Data painting on
+architecture (2008 to 2015)</h3>
+<ul>
+<li><strong>Quadrature (2010)</strong>: a live A/V performance with
+fellow student Alican Aktürk in the main building of santralistanbul.
+Footage of quadrilaterals was manipulated on the building to explore the
+relationship between architecture and media. He followed it with
+<em>Quadrangle</em> at the SANAA building in Essen, Germany.</li>
+<li><strong>Augmented Structures v1.0 (2011, Istanbul
+Biennial)</strong>: sounds recorded at different times of day on
+İstiklal Avenue were reinterpreted and projected with nine
+projectors.</li>
+<li><strong>Infinity Room (developed at UCLA in 2012, shown at Zorlu PSM
+for the 2015 Istanbul Biennial)</strong>: a “temporary immersive
+environment experiment” that uses pixels and 3D projection mapping
+instead of mirror illusions to turn every surface of a room into an
+abstract infinite space. It toured to SXSW, the New Zealand Festival,
+ZKM, and elsewhere.</li>
+<li><strong>Visions of America: Amériques (2014)</strong>: at the 2013
+Microsoft Research Design Expo he proposed using the exterior walls of
+Walt Disney Concert Hall (WDCH) as a canvas. With the original 3D model
+from Gehry Technologies, he created an indoor architectural video
+installation for the LA Phil’s performance of Varèse’s
+<em>Amériques</em> (his UCLA thesis project).</li>
+</ul>
+<h3 id="machine-hallucinations-2016-to-2023">3.2 Machine hallucinations
+(2016 to 2023)</h3>
+<ul>
+<li><strong>Wind of Boston: Data Paintings (2017)</strong>: a year of
+wind data from Boston Logan Airport (speed, direction, gusts, time, and
+temperature at 20-second intervals) visualized as four “chapters” on a 6
+× 13 foot digital canvas. A model early “data painting” that turns the
+invisible flow of wind into fluid brushstrokes.</li>
+<li><strong>Archive Dreaming (2017, SALT Galata)</strong>: 1.7 million
+documents from SALT Research sorted with machine learning. A t-SNE point
+cloud spreads the whole archive through 3D space, and a DCGAN generates
+“alternative documents that never existed.” Visitors explore the archive
+inside a responsive environment.</li>
+<li><strong>Melting Memories (2018, Pilevneli Gallery, February 7 to
+March 17)</strong>: prompted by his uncle’s Alzheimer’s diagnosis, he
+worked with UCSF’s Neuroscape lab. Anonymous EEG data drives
+visualizations of memory, health, degeneration, and decay.</li>
+<li><strong>WDCH Dreams (September 2018)</strong>: a commission for the
+LA Phil’s centennial. Trained on 587,763 images, 1,880 videos, 1,483
+metadata files, and 17,773 audio files (44.5 TB in total), it was
+projected across the entire exterior of WDCH with 42 projectors (50K
+resolution) and 8-channel sound. A 12-minute piece in three parts
+(<em>Centennial Memories</em>, <em>Consciousness</em>, <em>Dream</em>)
+ran every 30 minutes over ten nights. Gehry’s 3D files let the studio
+map the building’s curves exactly. Indoors, a companion touchscreen
+installation let visitors explore the archive non-linearly.</li>
+<li><strong>Latent History (2019, Fotografiska Stockholm)</strong>:
+about 150 years of Stockholm’s photographic archive reinterpreted with
+AI.</li>
+<li><strong>Machine Hallucinations: NYC (2019, Artechouse NYC)</strong>:
+the first work in the series. Wikipedia describes 300 million photos of
+New York plus 113 million additional data points (subway sounds, radio,
+traffic noise); the artist’s site says “over 100 million photographic
+memories.” For privacy, only public images were used, and StyleGAN
+generated the “dreams.”</li>
+<li><strong>Quantum Memories (2020, NGV Triennial)</strong>: more than
+200 million public nature-related images combined with quantum computing
+research data from the Google AI Quantum team. Shown on the largest LED
+screen in NGV’s history, it won an iF Design Award in 2022.</li>
+<li><strong>Machine Hallucinations: Nature Dreams (2021, König Galerie
+Berlin)</strong>: more than 300 million images of flowers, trees,
+mushrooms, landscapes, and clouds, then the largest raw nature dataset
+used for an artwork.</li>
+<li><strong>Casa Batlló residency (2021) and Living Architecture: Casa
+Batlló (May 2022)</strong>: as Casa Batlló’s first artist in residence
+he created the six-sided cube room <em>In the Mind of Gaudí</em>. The
+following year, a 360-degree façade work trained on real-time climate
+data from sensors around the building and about one billion images
+(Gaudí’s sketches, the building’s archives, and more) drew 65,000
+people.</li>
+<li><strong>Unsupervised - Machine Hallucinations - MoMA (opened
+2022-11-19, ran until 2023-10-29)</strong>: analyzed in detail in
+section 4.</li>
+<li><strong>Sense of Healing (2022 onward)</strong>: commissioned for
+the LuisaViaRoma × UNICEF gala. An AI data sculpture made with Therme
+Art and MYND from the brain data of people in mental health
+treatment.</li>
+<li><strong>Living Paintings (February 2023, Jeffrey Deitch
+LA)</strong>: his first major US solo exhibition, using Pacific wind
+forecasts, real-time weather, and images of California’s national
+parks.</li>
+<li><strong>Glacier Dreams (March 2023, Art Dubai)</strong>: a work
+based on glacier data.</li>
+<li><strong>Machine Hallucinations: Sphere (September 2023
+onward)</strong>: the opening work for the Las Vegas Sphere, a
+366-foot-tall building with a 580,000-square-foot LED shell. Part one
+used 1.1 million public images from the ISS, Hubble, and other sources;
+part two used 300 million national park images and wind sensor data from
+Las Vegas. NVIDIA A100s generated real-time AI animation, and it was
+then the largest AI artwork in the world. The artist called the premiere
+“one of the most Blade Runner moments ever.”</li>
+</ul>
+<h3 id="in-house-models-based-on-nature-and-architecture-2024-to-present">3.3
+In-house models based on nature and architecture (2024 to present)</h3>
+<ul>
+<li><strong>Large Nature Model (LNM) and Living Archive: Nature (January
+2024, WEF Davos)</strong>: a generative AI model dedicated exclusively
+to nature, trained on images, sounds, and research from institutions
+such as the Natural History Museum in London and the Smithsonian. It is
+billed as “the world’s first open-source generative AI model dedicated
+to nature.”</li>
+<li><strong>Echoes of the Earth: Living Archive (2024-02-16 to 04-07,
+Serpentine North, London)</strong>: the gallery walls were wrapped in
+imagery from data on flora, fauna, and fungi from more than 16
+rainforest locations (including LiDAR and photogrammetry). More than
+66,000 people visited in 47 days. It continued as his first solo
+exhibition in Asia at Futura Seoul in Gahoe-dong, Bukchon, Seoul (the
+exact opening date could not be confirmed in this research).</li>
+<li><strong>Large Nature Model: Living Art (March 2024, NVIDIA GTC, San
+Jose)</strong> and <strong>Large Nature Model: Coral (September 2024, UN
+Headquarters; Noor Riyadh 2024)</strong>.</li>
+<li><strong>Winds of Yawanawá (2024)</strong>: an NFT collection
+combining weather data from the Yawanawá village in the Amazon with
+artworks by young Yawanawá artists. It raised $3 million for the
+community.</li>
+<li><strong>AI Data Painting of the Keystone-Mast Collection (2024-09-21
+to 2025-12-15, UCR California Museum of Photography)</strong>: a
+reinterpretation of 250,000 stereoscopic glass-plate negatives and
+100,000 prints.</li>
+<li><strong>Living Architecture: Gehry (2025-03-07 to 10-19, Guggenheim
+Museum Bilbao)</strong>: the opening work of the Guggenheim’s
+site-specific series <em>in situ</em>. The Large Architecture Model
+(LAM), an image diffusion model fine-tuned on Gehry’s architectural
+language, generates an impossible building every minute, randomly
+varying location and time of day. Images are upscaled from a compact
+latent space to 16K, running continuously on Google Cloud. The work has
+six chapters: Data Universe, Data Plotting, Data Tunnel, Large
+Architecture Model, Machine Hallucination, and Dreams. Sound is by Kerim
+Karaoğlu.</li>
+<li><strong>Living Architecture: Biophilia (2025-05-10 to 11-23,
+Venice)</strong>: installed during the 2025 Venice Architecture
+Biennale, where the artist also gave a keynote at the Biennale
+conference.</li>
+<li><strong>Living Memory: Messi, A Goal in Life (2025)</strong>:
+Messi’s header in the 2009 UEFA Champions League final turned into an AI
+data sculpture. Unveiled on June 11, 2025, it sold at Christie’s for
+$1.87 million, with proceeds donated to educational initiatives in Latin
+America.</li>
+<li><strong>DATALAND and Machine Dreams: Rainforest (opened 2026-06-20,
+exhibition until 2027-01-31)</strong>: covered in section 5.</li>
+</ul>
+<h2 id="case-study-unsupervised-moma-2022-to-2023">4. Case study:
+<em>Unsupervised</em> (MoMA, 2022 to 2023)</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source data</td>
+<td>138,151 collection records MoMA published on GitHub in 2016 (title,
+artist, medium, dimensions, date made, date acquired,
+classification)</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>NVIDIA’s StyleGAN2-ADA (adaptive discriminator augmentation),
+trained on subsets of the collection</td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>1024 dimensions, then clustered by theme to capture semantic
+context</td>
+</tr>
+<tr>
+<td>Exploration tool</td>
+<td>Latent Space Browser, custom software the studio has developed since
+2017</td>
+</tr>
+<tr>
+<td>Visualization</td>
+<td>Each data connection is drawn by an edge-detection algorithm and
+colored by the density of its previous and next latent coordinates,
+tracing the machine’s “unconscious decisions” as lines</td>
+</tr>
+<tr>
+<td>Fluid variation</td>
+<td><em>Fluid Dreams</em>: data pigment flows via a GPU-accelerated
+fluid solver and real-time ray-traced lighting</td>
+</tr>
+<tr>
+<td>Data Universe variation</td>
+<td>A “latent walk” built with UMAP over seven dimensions: x, y, z, r,
+g, b, and time. UMAP’s inventor Leland McInnes praised it</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>A roughly 24 × 24 foot media wall in MoMA’s Gund Lobby, with trompe
+l’oeil depth at the screen edges</td>
+</tr>
+<tr>
+<td>Reception</td>
+<td>Extended four times after opening and ran for almost a year.
+Visitors stayed an average of 38 minutes. Acquired by MoMA in October
+2023</td>
+</tr>
+</tbody>
+</table>
+<p>The title (unsupervised learning) reflects the artist’s point that
+“categorization requires a human perspective; without categories, the
+machine can find a new form.” This reveals the core grammar of the work:
+<strong>move the archive into a high-dimensional vector space, glide
+through that space like a camera, and render the movement as fluid and
+light.</strong></p>
+<h2 id="dataland-2026">5. DATALAND (2026)</h2>
+<ul>
+<li><strong>Location and scale</strong>: The Grand LA (designed by Frank
+Gehry, 100 S Grand Ave), in the same cultural corridor as WDCH, The
+Broad, and MOCA. The public exhibition space is 25,000 square feet
+(Wikipedia gives 20,000 square feet). Gensler collaborated on the
+design, and Arup served as prime engineer and AV owner’s
+representative.</li>
+<li><strong>Opening exhibition <em>Machine Dreams:
+Rainforest</em></strong>: five galleries, including the Discovery
+Portal, the Data Pavilion with a 200-channel sound system, a gallery of
+cultural material shared with the permission of the Yawanawá community,
+and the Sanctuary, which visualizes aggregated audience interaction. It
+uses 1.5 billion pixels of high-resolution imagery, LiDAR and
+remote-sensing scans, more than 50,000 audio recordings, and real-time
+signals (humidity, light, soil moisture) from 16 rainforest
+locations.</li>
+<li><strong>Data.Link</strong>: a wearable that pairs a wrist-worn
+Empatica device (spelled “Empathica” in the Artsy article) with a
+scent-diffusing neckband. The exhibition responds in real time to
+anonymized biometric and behavioral signals, and at the end each visitor
+receives a paper “data token” representing their visit, which they may
+keep or choose to delete.</li>
+<li><strong>Ethics and sustainability claims</strong>: the museum says
+the model was trained on permission-based data from partners such as the
+Smithsonian, the Natural History Museum in London, Getty, and the
+Cornell Lab of Ornithology. It claims the LNM runs in a low-carbon
+Google Cloud region in Oregon on 87% carbon-free energy. The artist has
+said each visit uses roughly the energy of one iPhone charge. The press
+(Artsy) noted that these claims are likely to be closely
+scrutinized.</li>
+<li><strong>Additional platforms</strong>: the open-access <em>Living
+Encyclopedia</em>, which gathers data on oceans, coral reefs,
+rainforests, and the atmosphere, and the DATALAND app for exchanging
+questions and answers with an AI inside the galleries.</li>
+</ul>
+<h2 id="visual-grammar-recurring-vocabulary">6. Visual grammar:
+recurring vocabulary</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Representative works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Pigment</td>
+<td>Translating data values into the physical qualities of color and
+particles</td>
+<td>Wind of Boston, Living Paintings</td>
+</tr>
+<tr>
+<td>Data Universe</td>
+<td>Spreading an archive through 3D like a nebula via dimensionality
+reduction (t-SNE, UMAP)</td>
+<td>Archive Dreaming, Unsupervised: Data Universe, Living Architecture:
+Gehry chapter 1</td>
+</tr>
+<tr>
+<td>Latent Walk</td>
+<td>Continuous interpolation through the latent space of a GAN or
+diffusion model, so forms transform endlessly</td>
+<td>Machine Hallucinations throughout</td>
+</tr>
+<tr>
+<td>Fluid Dreams</td>
+<td>Pigment flowing and swirling via a GPU fluid solver</td>
+<td>Unsupervised Fluid Dreams, Sphere</td>
+</tr>
+<tr>
+<td>Data Sculpture</td>
+<td>A trompe l’oeil volume that seems to have depth inside its
+frame</td>
+<td>Unsupervised, Coral Dreams, Messi</td>
+</tr>
+<tr>
+<td>Living Architecture</td>
+<td>Projection or LED skins fitted to a building’s actual 3D form</td>
+<td>WDCH Dreams, Casa Batlló, Sphere</td>
+</tr>
+<tr>
+<td>Infinity Room</td>
+<td>An immersive room in which every surface is a projection
+surface</td>
+<td>Infinity Room, In the Mind of Gaudí</td>
+</tr>
+<tr>
+<td>Data Tunnel</td>
+<td>A first-person flight through latent space</td>
+<td>Living Architecture: Gehry chapter 3</td>
+</tr>
+</tbody>
+</table>
+<p>A detailed technical breakdown is in
+<code>03-technique-analysis.md</code>.</p>
+<h2 id="criticism-and-debate">7. Criticism and debate</h2>
+<ol type="1">
+<li><strong>The spectacle critique</strong>: Jerry Saltz (New
+York/Vulture) called <em>Unsupervised</em> “a massive techno lava lamp,”
+“a half-million-dollar screensaver,” and a digital version of the
+“Zombie Formalism of the 2010s.” His point is that it is a derivative
+that fails to transcend its source material and “takes away art’s
+otherness.” The two later had a public online spat (reported by
+Artnet).</li>
+<li><strong>Art-historical precedent</strong>: in the same piece Saltz
+cited the digital transformations of Jason Salavon and Jeremy Blake in
+the early 2000s, saying <em>Unsupervised</em> “adds nothing but scale
+and expense.”</li>
+<li><strong>The defense</strong>: Feral File and others see
+<em>Unsupervised</em> as a “historical moment” where three early-2020s
+currents met: immersive installation, NFTs, and AI. The 38-minute dwell
+time and MoMA’s acquisition are often cited as evidence of its public
+appeal.</li>
+<li><strong>Data ethics and environmental cost</strong>: early on he
+described using “publicly available images,” but since 2024 he has
+foregrounded “permission-based” data and low-carbon computing. This can
+be read as a response to public demands about data provenance and carbon
+cost, and at DATALAND these claims have become subject to scrutiny.</li>
+<li><strong>NFTs and the market</strong>: since 2020 he has released
+more than a dozen collections and over 11,000 tokens, raising about $10
+million for charity in total. This is entangled with criticism about the
+boundary between art and the market.</li>
+</ol>
+<h2 id="awards-selected">8. Awards (selected)</h2>
+<p>TIME100 Impact Award (2025), UCLA Edward A. Dickson Alumnus of the
+Year (2024), iF Gold Award (Quantum Memories, 2022), Lumen Prize Gold
+(2019), Lorenzo il Magnifico Lifetime Achievement Award for New Media
+Art, Microsoft Research Best Vision Award.</p>
+<h2 id="implications-for-implementation">9. Implications for
+implementation</h2>
+<p>Anadol’s work is a pipeline of <strong>(1) large-scale data
+collection, (2) training and embedding, (3) latent space exploration,
+(4) real-time rendering, and (5) architectural display</strong>. Of
+these, what a web browser and three.js can reproduce is the visual
+grammar of steps (3) to (5). Rather than reproducing the trained models
+themselves, it is realistic to implement the following as GPU
+shaders:</p>
+<ul>
+<li>Data Universe, spreading high-dimensional data into a 3D point
+cloud</li>
+<li>Data Pigment fluids, advecting particles with curl noise or real
+wind data</li>
+<li>Latent Walk morphs that interpolate endlessly between forms</li>
+<li>Data Sculpture and Infinity Room, with depth inside a frame</li>
+</ul>
+<p>The concrete step-by-step plan is in <code>05-threejs-plan.md</code>.
+This project is a technique study and homage; it does not copy or use
+the artist’s original videos, images, or datasets.</p>
+<h1 id="refik-anadol-timeline">Refik Anadol Timeline</h1>
+<p>Research cutoff: 2026-10-15. The full structured list is in
+<code>../../data/works.json</code> and
+<code>../../data/works.csv</code>.</p>
+<h2 id="overview">Overview</h2>
+<pre class="mermaid"><code>timeline
+    title Refik Anadol key timeline (1985 to 2026)
+    1985 : Born in Istanbul
+    2008 : First outdoor projection, begins using the term &quot;data painting&quot;
+    2010 : Quadrature (santralistanbul)
+    2011 : Augmented Structures v1.0 (Istanbul Biennial)
+    2012 : Enters UCLA DMA, develops Infinity Room
+    2014 : Visions of America - Amériques (WDCH) : Refik Anadol Studio founded
+    2015 : Infinity Room unveiled (Istanbul Biennial)
+    2016 : First Google AMI residency
+    2017 : Wind of Boston : Archive Dreaming (SALT, 1.7 million documents)
+    2018 : Melting Memories : WDCH Dreams (LA Phil centennial)
+    2019 : Machine Hallucinations - NYC : Latent History (Fotografiska) : Lumen Prize Gold
+    2020 : Quantum Memories (NGV) : First NFT
+    2021 : Machine Hallucinations - Nature Dreams : Casa Batlló residency
+    2022 : Living Architecture - Casa Batlló : Unsupervised (MoMA opening)
+    2023 : Living Paintings (Jeffrey Deitch) : Unsupervised enters MoMA collection : Machine Hallucinations - Sphere
+    2024 : Large Nature Model (Davos) : Echoes of the Earth (Serpentine) : LNM Coral (UN)
+    2025 : Living Architecture - Gehry (Guggenheim Bilbao) : Biophilia (Venice) : Messi data sculpture : TIME100 Impact Award
+    2026 : DATALAND opens (June 20) : Machine Dreams - Rainforest</code></pre>
+<h2 id="evolution-of-technique">Evolution of technique</h2>
+<pre class="mermaid"><code>flowchart LR
+    A[&quot;2008 to 2015&lt;br/&gt;Projection mapping&lt;br/&gt;architecture = canvas&quot;] --&gt; B[&quot;2016 to 2018&lt;br/&gt;t-SNE, DCGAN&lt;br/&gt;archive = universe&quot;]
+    B --&gt; C[&quot;2019 to 2023&lt;br/&gt;StyleGAN2-ADA, UMAP&lt;br/&gt;GPU fluid solver&lt;br/&gt;latent space = dream&quot;]
+    C --&gt; D[&quot;2024 onward&lt;br/&gt;In-house models LNM, LAM&lt;br/&gt;fine-tuned diffusion&lt;br/&gt;permission-based data&quot;]
+    D --&gt; E[&quot;2026&lt;br/&gt;DATALAND&lt;br/&gt;wearables + live ecological data&quot;]</code></pre>
+<h2 id="major-exhibition-periods-2022-to-2026">Major exhibition periods,
+2022 to 2026</h2>
+<pre class="mermaid"><code>gantt
+    dateFormat YYYY-MM-DD
+    axisFormat %Y-%m
+    title Major exhibition periods (confirmed dates only)
+    section MoMA
+    Unsupervised                :2022-11-19, 2023-10-29
+    section Sphere
+    Machine Hallucinations Sphere :2023-09-01, 120d
+    section London
+    Echoes of the Earth (Serpentine) :2024-02-16, 2024-04-07
+    section Riverside
+    Keystone-Mast AI Data Painting :2024-09-21, 2025-12-15
+    section Bilbao
+    Living Architecture Gehry   :2025-03-07, 2025-10-19
+    section Venice
+    Living Architecture Biophilia :2025-05-10, 2025-11-23
+    section LA
+    DATALAND Machine Dreams Rainforest :2026-06-20, 2027-01-31</code></pre>
+<p>Note: the Sphere run is an approximation based on Wikipedia’s
+description of a “four-month installation”. The artist’s site lists it
+as “ongoing since 2023-09-01”.</p>
+<h1 id="technique-breakdown-refik-anadols-data-aesthetics-pipeline">Technique
+Breakdown: Refik Anadol’s Data Aesthetics Pipeline</h1>
+<p>This document reconstructs the techniques described in public
+materials (work descriptions on the artist’s site, museum texts, press
+articles). The studio’s internal code is not public, so “publicly stated
+techniques” and “reasonable inferences” are kept separate.</p>
+<h2 id="overall-pipeline">1. Overall pipeline</h2>
+<pre class="mermaid"><code>flowchart TD
+    subgraph S1[&quot;1. Collection&quot;]
+        D1[&quot;Archive images&lt;br/&gt;(MoMA 138,151 records, SALT 1.7 million)&quot;]
+        D2[&quot;Environmental sensors&lt;br/&gt;(wind speed, humidity, soil moisture)&quot;]
+        D3[&quot;Biosignals&lt;br/&gt;(EEG, wearables)&quot;]
+    end
+    subgraph S2[&quot;2. Training and embedding&quot;]
+        M1[&quot;GAN training&lt;br/&gt;DCGAN, PGAN, StyleGAN2-ADA&quot;]
+        M2[&quot;Diffusion fine-tuning&lt;br/&gt;LNM, LAM&quot;]
+        M3[&quot;Dimensionality reduction&lt;br/&gt;t-SNE, UMAP&quot;]
+    end
+    subgraph S3[&quot;3. Latent space exploration&quot;]
+        L1[&quot;Latent Space Browser&lt;br/&gt;(in-house, since 2017)&quot;]
+        L2[&quot;Latent walk paths&lt;br/&gt;(interpolation, cluster tours)&quot;]
+    end
+    subgraph S4[&quot;4. Real-time rendering&quot;]
+        R1[&quot;GPU fluid solver&lt;br/&gt;data pigment&quot;]
+        R2[&quot;Point cloud&lt;br/&gt;Data Universe&quot;]
+        R3[&quot;Real-time ray-traced lighting&quot;]
+    end
+    subgraph S5[&quot;5. Architectural display&quot;]
+        X1[&quot;Projection mapping&lt;br/&gt;from building 3D models&quot;]
+        X2[&quot;LED walls, spherical shells&quot;]
+        X3[&quot;Multichannel sound&quot;]
+    end
+    D1 --&gt; M1 &amp; M3
+    D1 --&gt; M2
+    D2 --&gt; R1
+    D3 --&gt; R1
+    M1 --&gt; L1
+    M2 --&gt; L1
+    M3 --&gt; R2
+    L1 --&gt; L2 --&gt; R1 &amp; R2
+    R1 &amp; R2 &amp; R3 --&gt; X1 &amp; X2
+    X3 -.-&gt; X1</code></pre>
+<h2 id="stage-by-stage">2. Stage by stage</h2>
+<h3 id="collection-from-public-data-to-permission-based-data">2.1
+Collection: from “public data” to “permission-based data”</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Period</th>
+<th>Data policy</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017 to 2023</td>
+<td>Public archives, public images from social media and search
+engines</td>
+<td>Machine Hallucinations NYC (public photos), Unsupervised (MoMA’s
+public metadata on GitHub)</td>
+</tr>
+<tr>
+<td>2024 onward</td>
+<td>Permission-based data through institutional partnerships, on-site
+LiDAR and photogrammetry</td>
+<td>LNM (Smithsonian, Natural History Museum London, Getty, Cornell Lab
+of Ornithology)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Publicly stated:</strong> the scale of collection (hundreds
+of millions of images) and the categories of sources.
+<strong>Inferred:</strong> preprocessing such as deduplication, quality
+filtering and resolution normalization is standard for large-scale GAN
+training, so it was likely applied.</p>
+<h3 id="training-and-embedding">2.2 Training and embedding</h3>
+<ul>
+<li><strong>GAN family (2016 to 2023):</strong> DCGAN (Archive
+Dreaming), PGAN, StyleGAN, StyleGAN2-ADA (Unsupervised). StyleGAN2-ADA
+adds adaptive data augmentation to the discriminator, reducing
+overfitting even on relatively small datasets. It suits curated archives
+of a few hundred thousand images or fewer, such as the MoMA
+collection.</li>
+<li><strong>1024-dimensional embeddings (Unsupervised):</strong> images
+were represented as high-dimensional vectors and then clustered by
+theme.</li>
+<li><strong>Dimensionality reduction:</strong> t-SNE (Archive Dreaming,
+WDCH Dreams) and UMAP (Unsupervised: Data Universe, Stockholm archive
+studies). The output becomes x, y, z coordinates, and adding color (r,
+g, b) and time makes a “seven-dimensional” work.</li>
+<li><strong>Diffusion models (2024 onward):</strong> LAM is an image
+diffusion model fine-tuned on Gehry’s architectural language. It
+generates in a compressed latent space, upscales to 16K with in-house
+upscaling models, and makes a new image every minute while randomly
+changing location and time of day.</li>
+</ul>
+<h3 id="latent-space-exploration">2.3 Latent space exploration</h3>
+<ul>
+<li><strong>Latent Space Browser:</strong> an in-house tool developed
+since 2017 for exploring a trained latent space and choosing
+“hallucinations”. According to the Coral Dreams description, the artist
+personally selects particular hallucinations from “countless
+serendipitous allusions to coral”. It is not fully automated; this is
+<strong>where the artist’s curation intervenes</strong>.</li>
+<li><strong>Latent walk:</strong> interpolating the latent vector z
+continuously (for example with spherical linear interpolation, slerp)
+makes the generated image transform without breaks. This is the source
+of the “melting into something else” motion characteristic of Machine
+Hallucinations.</li>
+<li><strong>Edge and density coloring (Unsupervised):</strong> data
+connections are drawn as lines with an edge-detection algorithm and
+colored by the density of the previous and next latent coordinates. The
+path of movement itself becomes the drawing.</li>
+</ul>
+<h3 id="real-time-rendering">2.4 Real-time rendering</h3>
+<ul>
+<li><strong>GPU fluid solver:</strong> the Unsupervised Fluid Dreams
+description explicitly mentions “fluid solver algorithms accelerated by
+GPU computation and real-time ray-traced lighting”. Colors drawn from
+the latent space are injected into a fluid field like pigment and
+flow.</li>
+<li><strong>Real-time generation:</strong> Sphere produced real-time AI
+animation on NVIDIA A100s, and LAM and LNM run continuously on Google
+Cloud.</li>
+<li><strong>Inferred tools:</strong> a collaborator’s portfolio confirms
+Notch (Bilbao art direction). TouchDesigner, Houdini and Unreal-family
+tools are also plausible by industry practice, but this research could
+not confirm them officially.</li>
+</ul>
+<h3 id="architectural-display">2.5 Architectural display</h3>
+<ul>
+<li><strong>Original building 3D models:</strong> WDCH Dreams mapped the
+curved surfaces precisely using 3D files provided by Gehry, with 42
+projectors, 50K resolution and 8-channel sound.</li>
+<li><strong>Trompe-l’œil frame:</strong> the 24 × 24 ft LED wall at MoMA
+used a depth illusion in which forms seem to burst past the screen edges
+(Saltz also mentions the “trompe l’oeil edges”).</li>
+<li><strong>Immersive rooms:</strong> Infinity Room and In the Mind of
+Gaudí are cube rooms projected on all six sides.</li>
+<li><strong>Multisensory expansion:</strong> DATALAND widened the senses
+with 200-channel sound, scent-diffusing neckbands and wearable
+biosignals.</li>
+</ul>
+<h2 id="mapping-to-the-web-three.js">3. Mapping to the web
+(three.js)</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Anadol technique</th>
+<th>Web counterpart</th>
+<th>Difficulty</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data pigment fluid</td>
+<td>GPU compute particles + curl noise or a 2D fluid solver (Stable
+Fluids)</td>
+<td>Medium</td>
+<td>Hundreds of thousands of particles in real time with WebGPU compute
+shaders</td>
+</tr>
+<tr>
+<td>Data Universe</td>
+<td>Precomputed UMAP coordinates (JSON) + <code>Points</code> or
+instancing</td>
+<td>Low</td>
+<td>Real embeddings generated offline in Python</td>
+</tr>
+<tr>
+<td>Latent walk</td>
+<td>Particle position interpolation between target shapes + noise</td>
+<td>Medium</td>
+<td>A “shape space” stands in as a metaphor for the latent space instead
+of a GAN</td>
+</tr>
+<tr>
+<td>Trompe-l’œil data sculpture</td>
+<td>Fixed camera, box frame, depth fog, bloom</td>
+<td>Low</td>
+<td>Fixed aspect ratio</td>
+</tr>
+<tr>
+<td>Infinity Room</td>
+<td>Shader materials on the six inner faces of a cube</td>
+<td>Low</td>
+<td>First-person camera</td>
+</tr>
+<tr>
+<td>Data tunnel</td>
+<td>Recycled particle tunnel following the camera</td>
+<td>Low</td>
+<td></td>
+</tr>
+<tr>
+<td>Real-time environmental data</td>
+<td>Inject public weather API (wind) data into the fluid field</td>
+<td>Medium</td>
+<td>If an API key is needed, route through a server-side proxy</td>
+</tr>
+<tr>
+<td>Biometric response</td>
+<td>Microphone (Web Audio), pointer movement</td>
+<td>Low</td>
+<td>No personal data is collected or stored</td>
+</tr>
+</tbody>
+</table>
+<h1 id="scene-catalog-10-themes-10-100">Scene Catalog: 10 Themes × 10 =
+100</h1>
+<p>Principle: each scene covers <strong>one concept</strong>, and no
+phenomenon or subject appears twice. Scenes that use a similar algorithm
+(for example, branching) count as separate concepts when their subject
+and scale differ, and even then their visual treatment is designed to
+look different. Numbering follows the theme order (theme number × 10 +
+position).</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Theme</th>
+<th>File</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Machine Dreams</td>
+<td><code>themes/machine.js</code></td>
+<td>Anadol’s grammar of data and AI</td>
+</tr>
+<tr>
+<td>2 Atmosphere</td>
+<td><code>themes/atmosphere.js</code></td>
+<td>Weather phenomena (macro)</td>
+</tr>
+<tr>
+<td>3 Ocean &amp; Water</td>
+<td><code>themes/ocean.js</code></td>
+<td>Oceans and waterways</td>
+</tr>
+<tr>
+<td>4 Forest &amp; Life</td>
+<td><code>themes/life.js</code></td>
+<td>Plants, animals, and ecology</td>
+</tr>
+<tr>
+<td>5 Earth &amp; Geology</td>
+<td><code>themes/earth.js</code></td>
+<td>Landforms and geological processes</td>
+</tr>
+<tr>
+<td>6 Cosmos</td>
+<td><code>themes/cosmos.js</code></td>
+<td>Celestial bodies and cosmic structure (ultra-macro)</td>
+</tr>
+<tr>
+<td>7 Micro</td>
+<td><code>themes/micro.js</code></td>
+<td>Atoms, molecules, and cells</td>
+</tr>
+<tr>
+<td>8 City</td>
+<td><code>themes/city.js</code></td>
+<td>Urban infrastructure and life</td>
+</tr>
+<tr>
+<td>9 Countryside</td>
+<td><code>themes/countryside.js</code></td>
+<td>Rural landscapes and labor</td>
+</tr>
+<tr>
+<td>10 Physics &amp; Math</td>
+<td><code>themes/physics.js</code></td>
+<td>Laws and mathematical structures</td>
+</tr>
+</tbody>
+</table>
+<h2 id="machine-dreams">1 Machine Dreams</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>데이터 안료</td>
+<td>Data Pigment</td>
+<td>Particles carried by a curl-noise fluid (original)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>데이터 유니버스</td>
+<td>Data Universe</td>
+<td>An archive grid regrouping into an embedding nebula (original)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>잠재 산책</td>
+<td>Latent Walk</td>
+<td>Interpolation through a space of shapes (original)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>무한의 방</td>
+<td>Infinity Room</td>
+<td>A room projected on all six faces (original)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>데이터 터널</td>
+<td>Data Tunnel</td>
+<td>A first-person flight through latent space (original)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>녹아내리는 기억</td>
+<td>Melting Memories</td>
+<td>EEG ribbons melting (original)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>양자 기억</td>
+<td>Quantum Memories</td>
+<td>A probability cloud and measured voxels (original)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>신경망</td>
+<td>Neural Network</td>
+<td>Activations flowing along connections between layered nodes</td>
+</tr>
+<tr>
+<td>9</td>
+<td>어텐션 지도</td>
+<td>Attention Map</td>
+<td>Attention arches between tokens arranged in a ring</td>
+</tr>
+<tr>
+<td>10</td>
+<td>경사 하강</td>
+<td>Gradient Descent</td>
+<td>Walkers rolling into the valleys of a loss landscape</td>
+</tr>
+</tbody>
+</table>
+<h2 id="atmosphere">2 Atmosphere</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>바람 회화</td>
+<td>Wind Painting</td>
+<td>2D wind flow (original)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>오로라</td>
+<td>Aurora</td>
+<td>Curtains of light hanging in the sky, rippling vertical bands</td>
+</tr>
+<tr>
+<td>13</td>
+<td>번개</td>
+<td>Lightning</td>
+<td>A branching discharge path that flashes</td>
+</tr>
+<tr>
+<td>14</td>
+<td>토네이도</td>
+<td>Tornado</td>
+<td>A rotating funnel column with entrained debris</td>
+</tr>
+<tr>
+<td>15</td>
+<td>허리케인</td>
+<td>Hurricane</td>
+<td>Spiral cloud bands and an eye seen from above</td>
+</tr>
+<tr>
+<td>16</td>
+<td>적운</td>
+<td>Cumulus</td>
+<td>Billowing masses of cloud</td>
+</tr>
+<tr>
+<td>17</td>
+<td>몬순</td>
+<td>Monsoon</td>
+<td>Rain pouring down at a slant</td>
+</tr>
+<tr>
+<td>18</td>
+<td>눈 내림</td>
+<td>Snowfall</td>
+<td>Snowflakes fluttering down</td>
+</tr>
+<tr>
+<td>19</td>
+<td>제트 기류</td>
+<td>Jet Stream</td>
+<td>A meandering band of Rossby waves wrapped around the globe</td>
+</tr>
+<tr>
+<td>20</td>
+<td>안개</td>
+<td>Valley Fog</td>
+<td>A low layer of fog filling and flowing through a valley</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ocean-water">3 Ocean &amp; Water</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21</td>
+<td>산호의 꿈</td>
+<td>Coral Dreams</td>
+<td>A branching coral data sculpture (original)</td>
+</tr>
+<tr>
+<td>22</td>
+<td>너울</td>
+<td>Ocean Swell</td>
+<td>A sea surface moving with Gerstner waves</td>
+</tr>
+<tr>
+<td>23</td>
+<td>소용돌이</td>
+<td>Maelstrom</td>
+<td>A rotating water surface drawn into its center</td>
+</tr>
+<tr>
+<td>24</td>
+<td>폭포</td>
+<td>Waterfall</td>
+<td>A falling stream of water and its spray</td>
+</tr>
+<tr>
+<td>25</td>
+<td>해파리</td>
+<td>Jellyfish</td>
+<td>Pulsing bells with trailing tentacles</td>
+</tr>
+<tr>
+<td>26</td>
+<td>발광 플랑크톤</td>
+<td>Bioluminescence</td>
+<td>Blue plankton that glow when a wave touches them</td>
+</tr>
+<tr>
+<td>27</td>
+<td>물고기 떼</td>
+<td>Fish School</td>
+<td>A school of fish milling in a rotating vortex</td>
+</tr>
+<tr>
+<td>28</td>
+<td>빙산</td>
+<td>Iceberg</td>
+<td>A small part above the waterline and a huge body below</td>
+</tr>
+<tr>
+<td>29</td>
+<td>열수 분출공</td>
+<td>Hydrothermal Vent</td>
+<td>A column of black smoke rising from a deep-sea chimney</td>
+</tr>
+<tr>
+<td>30</td>
+<td>강 삼각주</td>
+<td>River Delta</td>
+<td>Branching channels spreading into the sea, seen from above</td>
+</tr>
+</tbody>
+</table>
+<h2 id="forest-life">4 Forest &amp; Life</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>31</td>
+<td>기계의 꿈: 열대우림</td>
+<td>Machine Dreams: Rainforest</td>
+<td>Vines and spores (original)</td>
+</tr>
+<tr>
+<td>32</td>
+<td>나무의 성장</td>
+<td>Tree Growth</td>
+<td>A 3D tree whose branches grow out from the trunk in turn</td>
+</tr>
+<tr>
+<td>33</td>
+<td>균사 네트워크</td>
+<td>Mycelium</td>
+<td>Hyphae spreading underground, with nutrient signals</td>
+</tr>
+<tr>
+<td>34</td>
+<td>반딧불이</td>
+<td>Fireflies</td>
+<td>Fireflies whose flashing gradually synchronizes</td>
+</tr>
+<tr>
+<td>35</td>
+<td>철새의 이동</td>
+<td>Bird Migration</td>
+<td>Flocks moving along great-circle routes over the globe</td>
+</tr>
+<tr>
+<td>36</td>
+<td>벌집</td>
+<td>Beehive</td>
+<td>Hexagonal comb cells with bees coming and going</td>
+</tr>
+<tr>
+<td>37</td>
+<td>단풍 낙엽</td>
+<td>Autumn Leaves</td>
+<td>Leaves tumbling as they fall</td>
+</tr>
+<tr>
+<td>38</td>
+<td>민들레 홀씨</td>
+<td>Dandelion Seeds</td>
+<td>Seeds scattering on their pappus</td>
+</tr>
+<tr>
+<td>39</td>
+<td>거미줄</td>
+<td>Spider Web</td>
+<td>An orb web woven from radial threads and a spiral thread</td>
+</tr>
+<tr>
+<td>40</td>
+<td>개미 행렬</td>
+<td>Ant Trails</td>
+<td>Ants traveling back and forth along pheromone trails</td>
+</tr>
+</tbody>
+</table>
+<h2 id="earth-geology">5 Earth &amp; Geology</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>41</td>
+<td>화산 분화</td>
+<td>Volcano</td>
+<td>Ejecta shooting up from the crater and falling back</td>
+</tr>
+<tr>
+<td>42</td>
+<td>판 구조</td>
+<td>Tectonic Drift</td>
+<td>Plates pulling apart with a ridge rising between them</td>
+</tr>
+<tr>
+<td>43</td>
+<td>사구</td>
+<td>Sand Dunes</td>
+<td>Crescent sand dunes migrating with the wind</td>
+</tr>
+<tr>
+<td>44</td>
+<td>협곡 지층</td>
+<td>Canyon Strata</td>
+<td>Colored bands of strata in eroded canyon walls</td>
+</tr>
+<tr>
+<td>45</td>
+<td>정동</td>
+<td>Geode</td>
+<td>Crystals lining the inside of a hollow rock</td>
+</tr>
+<tr>
+<td>46</td>
+<td>지진파</td>
+<td>Seismic Waves</td>
+<td>P waves and S waves spreading through a cross-section of the
+Earth</td>
+</tr>
+<tr>
+<td>47</td>
+<td>종유굴</td>
+<td>Stalactite Cave</td>
+<td>Stalactites growing from the ceiling, with falling drips</td>
+</tr>
+<tr>
+<td>48</td>
+<td>산맥</td>
+<td>Mountain Range</td>
+<td>A low terrain flight over the ridgelines</td>
+</tr>
+<tr>
+<td>49</td>
+<td>간헐천</td>
+<td>Geyser</td>
+<td>A column of steam and water erupting at intervals</td>
+</tr>
+<tr>
+<td>50</td>
+<td>소금 사막</td>
+<td>Salt Flat</td>
+<td>A salt plain cracked into hexagons</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cosmos">6 Cosmos</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>51</td>
+<td>나선 은하</td>
+<td>Spiral Galaxy</td>
+<td>Density-wave spiral arms in differential rotation</td>
+</tr>
+<tr>
+<td>52</td>
+<td>블랙홀</td>
+<td>Black Hole</td>
+<td>An accretion disk and a photon ring</td>
+</tr>
+<tr>
+<td>53</td>
+<td>성운</td>
+<td>Nebula</td>
+<td>Gas clouds where stars are born</td>
+</tr>
+<tr>
+<td>54</td>
+<td>태양 코로나</td>
+<td>Solar Corona</td>
+<td>Magnetic loops and flares on the Sun’s surface</td>
+</tr>
+<tr>
+<td>55</td>
+<td>행성의 고리</td>
+<td>Planetary Rings</td>
+<td>A thin ring of particles orbiting a planet</td>
+</tr>
+<tr>
+<td>56</td>
+<td>초신성</td>
+<td>Supernova</td>
+<td>A shock-wave shell expanding outward</td>
+</tr>
+<tr>
+<td>57</td>
+<td>혜성</td>
+<td>Comet</td>
+<td>A tail streaming away from the Sun</td>
+</tr>
+<tr>
+<td>58</td>
+<td>우주 거대 구조</td>
+<td>Cosmic Web</td>
+<td>Galaxy filaments and voids</td>
+</tr>
+<tr>
+<td>59</td>
+<td>펄서</td>
+<td>Pulsar</td>
+<td>Two beams sweeping around as the star rotates</td>
+</tr>
+<tr>
+<td>60</td>
+<td>태양계</td>
+<td>Orrery</td>
+<td>Planets on Keplerian orbits</td>
+</tr>
+</tbody>
+</table>
+<h2 id="micro">7 Micro</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>61</td>
+<td>원자 오비탈</td>
+<td>Atomic Orbitals</td>
+<td>s, p, and d electron probability clouds</td>
+</tr>
+<tr>
+<td>62</td>
+<td>DNA 이중 나선</td>
+<td>DNA Helix</td>
+<td>Two rotating strands and their base pairs</td>
+</tr>
+<tr>
+<td>63</td>
+<td>세포 분열</td>
+<td>Mitosis</td>
+<td>A cell and its chromosomes dividing in two</td>
+</tr>
+<tr>
+<td>64</td>
+<td>바이러스 캡시드</td>
+<td>Virus Capsid</td>
+<td>An icosahedral protein shell</td>
+</tr>
+<tr>
+<td>65</td>
+<td>혈류</td>
+<td>Blood Flow</td>
+<td>Red blood cells flowing through a vessel</td>
+</tr>
+<tr>
+<td>66</td>
+<td>단백질 접힘</td>
+<td>Protein Folding</td>
+<td>An unfolded chain folding into a structure</td>
+</tr>
+<tr>
+<td>67</td>
+<td>브라운 운동</td>
+<td>Brownian Motion</td>
+<td>Particles jittering from molecular collisions</td>
+</tr>
+<tr>
+<td>68</td>
+<td>세균 군집</td>
+<td>Bacterial Colony</td>
+<td>Colonies spreading across a culture dish</td>
+</tr>
+<tr>
+<td>69</td>
+<td>규조류</td>
+<td>Diatoms</td>
+<td>Radially symmetric silica shells</td>
+</tr>
+<tr>
+<td>70</td>
+<td>눈 결정</td>
+<td>Snowflake</td>
+<td>A hexagonal dendritic crystal growing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="city">8 City</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>71</td>
+<td>스피어</td>
+<td>Sphere</td>
+<td>A spherical LED shell (original)</td>
+</tr>
+<tr>
+<td>72</td>
+<td>살아있는 건축</td>
+<td>Living Architecture</td>
+<td>Projection on a curved facade (original)</td>
+</tr>
+<tr>
+<td>73</td>
+<td>고속도로 빛의 궤적</td>
+<td>Highway Trails</td>
+<td>Streams of vehicle headlights and taillights</td>
+</tr>
+<tr>
+<td>74</td>
+<td>지하철 노선망</td>
+<td>Metro Network</td>
+<td>Trains running along their lines</td>
+</tr>
+<tr>
+<td>75</td>
+<td>마천루 창문</td>
+<td>Skyline Windows</td>
+<td>High-rise windows switching on and off</td>
+</tr>
+<tr>
+<td>76</td>
+<td>야경 항공뷰</td>
+<td>City Grid at Night</td>
+<td>A grid of streetlights seen from above</td>
+</tr>
+<tr>
+<td>77</td>
+<td>스크램블 교차로</td>
+<td>Scramble Crossing</td>
+<td>Pedestrians crossing in every direction at once</td>
+</tr>
+<tr>
+<td>78</td>
+<td>불꽃놀이</td>
+<td>Fireworks</td>
+<td>Fireworks bursting over the city</td>
+</tr>
+<tr>
+<td>79</td>
+<td>현수교</td>
+<td>Suspension Bridge</td>
+<td>Main cables, hangers, and traffic on the deck</td>
+</tr>
+<tr>
+<td>80</td>
+<td>전파</td>
+<td>Radio Signals</td>
+<td>Concentric radio waves spreading from base stations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="countryside">9 Countryside</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>81</td>
+<td>밀밭</td>
+<td>Wheat Field</td>
+<td>Ears of wheat rippling in the wind</td>
+</tr>
+<tr>
+<td>82</td>
+<td>다랑논</td>
+<td>Rice Terraces</td>
+<td>Flooded, terraced rice paddies</td>
+</tr>
+<tr>
+<td>83</td>
+<td>풍력 발전기</td>
+<td>Wind Turbines</td>
+<td>Blades turning on a hill</td>
+</tr>
+<tr>
+<td>84</td>
+<td>들판 조각보</td>
+<td>Farmland Patchwork</td>
+<td>Fields and furrows seen from above</td>
+</tr>
+<tr>
+<td>85</td>
+<td>미스터리 서클</td>
+<td>Crop Circle</td>
+<td>A geometric pattern drawn into a wheat field</td>
+</tr>
+<tr>
+<td>86</td>
+<td>연못의 빗방울</td>
+<td>Pond Ripples</td>
+<td>Concentric ripples spreading across a pond</td>
+</tr>
+<tr>
+<td>87</td>
+<td>굴뚝 연기</td>
+<td>Chimney Smoke</td>
+<td>Smoke rising from the village rooftops</td>
+</tr>
+<tr>
+<td>88</td>
+<td>해바라기 밭</td>
+<td>Sunflower Field</td>
+<td>Fibonacci flower heads that turn to follow the Sun</td>
+</tr>
+<tr>
+<td>89</td>
+<td>방목지</td>
+<td>Grazing Pasture</td>
+<td>Livestock wandering slowly across a meadow</td>
+</tr>
+<tr>
+<td>90</td>
+<td>물레방아</td>
+<td>Waterwheel</td>
+<td>A wheel turning as it lifts water</td>
+</tr>
+</tbody>
+</table>
+<h2 id="physics-math">10 Physics &amp; Math</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>ko</th>
+<th>en</th>
+<th>Concept and visualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>91</td>
+<td>로렌츠 끌개</td>
+<td>Lorenz Attractor</td>
+<td>A butterfly-shaped chaotic trajectory</td>
+</tr>
+<tr>
+<td>92</td>
+<td>진자 파동</td>
+<td>Pendulum Wave</td>
+<td>Waves formed by pendulums of different lengths</td>
+</tr>
+<tr>
+<td>93</td>
+<td>리사주 곡선</td>
+<td>Lissajous</td>
+<td>Curves set by the frequency ratio of two oscillations</td>
+</tr>
+<tr>
+<td>94</td>
+<td>자기력선</td>
+<td>Magnetic Field</td>
+<td>Field lines around a dipole</td>
+</tr>
+<tr>
+<td>95</td>
+<td>클라드니 도형</td>
+<td>Chladni Plate</td>
+<td>Sand gathering on the nodal lines of a vibrating plate</td>
+</tr>
+<tr>
+<td>96</td>
+<td>파동 간섭</td>
+<td>Wave Interference</td>
+<td>Constructive and destructive patterns from two sources</td>
+</tr>
+<tr>
+<td>97</td>
+<td>뫼비우스 띠</td>
+<td>Möbius Strip</td>
+<td>The topology of a strip with only one side</td>
+</tr>
+<tr>
+<td>98</td>
+<td>망델브로 집합</td>
+<td>Mandelbrot Set</td>
+<td>A fractal terrain whose height is the escape speed</td>
+</tr>
+<tr>
+<td>99</td>
+<td>보로노이 분할</td>
+<td>Voronoi Shatter</td>
+<td>Space breaking into cells around seed points</td>
+</tr>
+<tr>
+<td>100</td>
+<td>프리즘 분산</td>
+<td>Prism Dispersion</td>
+<td>White light splitting into a rainbow spectrum</td>
+</tr>
+</tbody>
+</table>
+<h1 id="sources">Sources</h1>
+<p>Research date: 2026-10-15. All URLs were checked on this date via
+Tavily search and extraction.</p>
+<h2 id="primary-sources-artist-institutions">Primary sources (artist,
+institutions)</h2>
+<ul>
+<li>Refik Anadol official site, about the artist:
+https://refikanadol.com/refik-anadol</li>
+<li>Works: https://refikanadol.com/works</li>
+<li>Unsupervised - Machine Hallucinations - MoMA:
+https://refikanadol.com/works/unsupervised</li>
+<li>Machine Hallucinations - Sphere:
+https://refikanadol.com/works/machine-hallucinations-sphere</li>
+<li>Machine Hallucination (NYC):
+https://refikanadol.com/works/machine-hallucination</li>
+<li>Machine Hallucinations - Coral Dreams:
+https://refikanadol.com/works/coraldreams</li>
+<li>Archive Dreaming:
+https://refikanadol.com/works/archive-dreaming</li>
+<li>WDCH Dreams: https://refikanadol.com/works/wdch-dreams</li>
+<li>Melting Memories:
+https://refikanadol.com/works/melting-memories</li>
+<li>Infinity Room: https://refikanadol.com/works/infinity-room</li>
+<li>Wind of Boston: Data Paintings:
+https://refikanadol.com/works/wind-of-boston-data-paintings</li>
+<li>Quantum Memories: https://refikanadol.com/works/quantummemories</li>
+<li>Echoes of the Earth: Living Archive:
+https://refikanadol.com/works/echoes-of-the-earth-living-archive</li>
+<li>Large Nature Model - Living Art:
+https://refikanadol.com/works/large-nature-model-living-art</li>
+<li>Living Architecture: Gehry:
+https://refikanadol.com/works/living-architecture-ghery</li>
+<li>Sense of Healing:
+https://refikanadol.com/works/sense-of-healing-ai-data-sculpture</li>
+<li>Events: https://refikanadol.com/events</li>
+<li>Refik Anadol Studio: https://refikanadolstudio.com/studio</li>
+<li>About DATALAND: https://dataland.art/about</li>
+<li>MoMA exhibition page:
+https://www.moma.org/calendar/exhibitions/5535</li>
+<li>NGV, Quantum memories:
+https://www.ngv.vic.gov.au/refik-anadol-quantum-memories</li>
+<li>SALT, Archive Dreaming:
+https://saltonline.org/en/archive-dreaming-refik-anadol-1627</li>
+</ul>
+<h2 id="secondary-sources-encyclopedia-press-criticism">Secondary
+sources (encyclopedia, press, criticism)</h2>
+<ul>
+<li>Wikipedia, Refik Anadol:
+https://en.wikipedia.org/wiki/Refik_Anadol</li>
+<li>Artsy, Inside DATALAND:
+https://www.artsy.net/article/artsy-editorial-inside-dataland-refik-anadols-ai-museum</li>
+<li>Artnet, Dataland opening date:
+https://news.artnet.com/art-world/dataland-refik-anadol-opening-date-2767486</li>
+<li>The Art Newspaper, Dataland opens:
+https://www.theartnewspaper.com/2026/06/18/refik-anadol-dataland-opens-los-angeles</li>
+<li>Los Angeles Times, Dataland:
+https://www.latimes.com/entertainment-arts/story/2026-06-05/dataland-worlds-first-museum-of-ai-arts-refik-anadol-large-nature-model-downtown-los-angeles</li>
+<li>Jerry Saltz, Vulture:
+https://www.vulture.com/article/jerry-saltz-moma-refik-anadol-unsupervised.html</li>
+<li>Artnet, the Saltz and Anadol spat:
+https://news.artnet.com/art-world-archives/refik-anadol-vs-jerry-saltz-2400275</li>
+<li>The New Criterion, War of the worlds:
+https://newcriterion.com/dispatch/war-of-the-worlds</li>
+<li>Feral File, Modern Dreams:
+https://feralfile.substack.com/p/modern-dreams-refik-anadols-unsupervised</li>
+<li>designboom, Living Architecture: Gehry:
+https://www.designboom.com/art/refik-anadol-frank-gehry-forms-ai-generated-landscapes-guggenheim-bilbao-03-11-2025</li>
+<li>My Modern Met, Living Architecture: Gehry:
+https://mymodernmet.com/refik-anadol-living-architecture-gehry</li>
+<li>Artsy, Living Paintings:
+https://www.artsy.net/article/artsy-editorial-refik-anadols-mesmerizing-data-paintings-captivating-audiences-worldwide</li>
+<li>bitforms gallery, Wind of Boston:
+https://bitforms.art/artwork/wind-of-boston-data-paintings</li>
+<li>NVIDIA AI Art Gallery:
+https://www.nvidia.com/en-us/research/ai-art-gallery/artists/refik-anadol</li>
+<li>XIBT interview:
+https://www.xibtmagazine.com/2020/10/augmenting-perception-an-interview-with-media-artist-refik-anadol</li>
+<li>Niio, art in a latent space:
+https://www.niio.com/blog/refik-anadol-art-in-a-latent-space-2</li>
+<li>Collaborator portfolio (confirms Notch use):
+https://alexleguillou.com/Refik-Anadol-Guggenheim-Bilbao</li>
+</ul>
+<h2 id="conflicts-between-sources">Conflicts between sources</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value A</th>
+<th>Value B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Machine Hallucinations: NYC data</td>
+<td>300 million photos + 113 million data points (Wikipedia)</td>
+<td>100 million+ photos (artist site)</td>
+</tr>
+<tr>
+<td>DATALAND floor area</td>
+<td>25,000 sq ft of public exhibition space (Artsy, Getty)</td>
+<td>20,000 sq ft (Wikipedia)</td>
+</tr>
+<tr>
+<td>Living Architecture: Gehry end date</td>
+<td>2025-10-19 (designboom, events page text)</td>
+<td>2025-10-12 (work page metadata)</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

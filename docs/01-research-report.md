@@ -7,6 +7,8 @@ lang: ko-KR
 
 # Refik Anadol 심층 리서치 보고서
 
+**한국어** | [English](en/01-research-report.md)
+
 > 조사 기준일: 2026-10-15. 요청 원문의 "Refik Anotol"은 터키계 미국인 미디어 아티스트 **Refik Anadol**(레픽 아나돌)로 해석했습니다. 수치와 날짜는 `sources.md`의 출처를 따르며, 출처끼리 어긋나는 값은 본문에 함께 표기했습니다.
 
 ## 1. 요약
