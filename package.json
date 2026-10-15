@@ -10,7 +10,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "three": "0.186.1"
