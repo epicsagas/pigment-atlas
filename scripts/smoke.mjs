@@ -42,7 +42,7 @@ THEMES.forEach( ( theme, ti ) => {
 				for ( const key of [ 'positionNode', 'colorNode', 'scaleNode' ] ) if ( o.material?.[ key ] && findNaN( o.material[ key ] ) ) throw new Error( `NaN constant in ${ key }` );
 
 			} );
-			s.update( 0.016, 1.5 );
+			for ( const t of [ 0, 1.5, 7.3, 31, 97 ] ) s.update( 0.016, t ); // several times: cycle/mode switches run in JS
 			s.dispose();
 
 		} catch ( e ) {

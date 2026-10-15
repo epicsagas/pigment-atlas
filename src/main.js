@@ -263,7 +263,8 @@ renderer.setAnimationLoop( ( timestamp ) => {
 
 	timer.update( timestamp );
 	controls.update();
-	active.update( timer.getDelta(), timer.getElapsed() - sceneStart );
+	// Timer is fed rAF timestamps, which can trail its own clock right after a scene loads; never hand scenes negative time.
+	active.update( Math.max( 0, timer.getDelta() ), Math.max( 0, timer.getElapsed() - sceneStart ) );
 	pipeline.render();
 
 	if ( state.tour && timer.getElapsed() - state.tourStart > TOUR_SECONDS ) load( state.index + 1 );
