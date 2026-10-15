@@ -54,7 +54,7 @@ const spiralGalaxy = defineScene( {
 const blackHole = defineScene( {
 	meta: {
 		title: { ko: '블랙홀', en: 'Black Hole' },
-		ref: { ko: '케플러 속도로 도는 강착 원반과, 중력 렌즈로 휘어 그림자를 감싸는 원반 뒷면의 상', en: 'A Keplerian accretion disk, its far side lensed up and around the shadow' }
+		ref: { ko: '구형 사건의 지평선이 드리운 그림자와 광자 고리, 케플러 속도로 도는 강착 원반, 중력 렌즈로 휘어 그림자를 감싸는 원반 뒷면의 상', en: 'The spherical horizon casts a shadow ringed by photons; the Keplerian disk\'s far side is lensed up and around it' }
 	},
 	camera: [ 0, 0.35, 6.5 ],
 	count: 170_000,
@@ -75,7 +75,9 @@ const blackHole = defineScene( {
 		const disk = vec3( a.x.mul( cos( theta ) ), a.y, a.x.mul( sin( theta ) ) );
 		// The image keeps the disk's lateral position x = r cos(theta), so it drifts the same way as the far side.
 		const plane = vec3( a.x.mul( cos( theta ) ), a.x.mul( abs( sin( theta ) ) ).mul( b.w ), - 0.3 );
-		return mix( disk, plane, step( 0.5, b.x ) );
+		// Photon ring: light orbiting at 1.5 r_s escapes along the shadow edge, seen as a circle facing the viewer.
+		const ring = vec3( a.x.mul( cos( theta ) ), a.x.mul( sin( theta ) ), 0 );
+		return mix( mix( disk, plane, step( 0.5, b.x ) ), ring, is( b.x, 2 ) );
 
 	},
 	color: ( { a, b, t } ) => {
@@ -87,6 +89,13 @@ const blackHole = defineScene( {
 		const farSide = smoothstep( - 0.15, 0.25, sin( theta ) ).oneMinus().mul( step( 0, b.w ).mul( 0.55 ).add( 0.45 ) );
 		const hot = gradient( T, [ 0x5a0f00, 0xff5a12, 0xffc27a, 0xfff6e8 ] ).mul( beam ).mul( mix( 1, farSide, is( b.x, 1 ) ) );
 		return mix( hot, color( 0xfff2d0 ).mul( 1.8 ), is( b.x, 2 ) );
+
+	},
+	// The event horizon is a sphere (r_s); its shadow (radius ~2.6 r_s, edged by the photon ring at 1.06)
+	// hides everything behind it. An opaque black sphere writes depth so points behind it are occluded.
+	extras( { scene } ) {
+
+		scene.add( new THREE.Mesh( new THREE.SphereGeometry( 1.0, 64, 32 ), new THREE.MeshBasicNodeMaterial( { color: 0x000000 } ) ) );
 
 	},
 	alpha: 0.35,
