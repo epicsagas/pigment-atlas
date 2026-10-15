@@ -1,0 +1,27 @@
+year,title,venue,city,type,technique,data,source
+2010,Quadrature,santralistanbul,Istanbul,A/V performance,projection mapping,geometric footage of quadrilaterals,wikipedia
+2011,Augmented Structures v1.0,Istanbul Biennial (Istiklal Avenue),Istanbul,public installation,9-projector site-specific projection,street sound recordings by time of day,wikipedia
+2014,Visions of America: Amériques,Walt Disney Concert Hall,Los Angeles,A/V performance,architectural projection on original 3D model,LA Phil performance of Varèse Amériques,wikipedia;refikanadol.com
+2015,Infinity Room,"Istanbul Biennial, Zorlu PSM",Istanbul,immersive room,pixel + 3D projection mapping on every surface,generative,wikipedia;refikanadol.com
+2017,Wind of Boston: Data Paintings,office lobby,Boston,data painting,"custom software, 4 chapters on 6x13 ft canvas",1 year of Logan Airport wind data at 20 s intervals,refikanadol.com;bitforms
+2017,Archive Dreaming,SALT Galata,Istanbul,responsive installation,"t-SNE point cloud, DCGAN","1,700,000 SALT Research documents",refikanadol.com;saltonline.org
+2018,Melting Memories,Pilevneli Gallery,Istanbul,data sculpture,EEG-driven generative visuals,anonymous EEG dataset with UCSF Neuroscape,wikipedia;refikanadol.com
+2018,WDCH Dreams,Walt Disney Concert Hall facade,Los Angeles,architectural projection,"ML on archive, 42 projectors, 50K, 8-channel sound","587,763 images, 1,880 videos, 1,483 metadata files, 17,773 audio files (44.5 TB)",wikipedia
+2019,Latent History,Fotografiska,Stockholm,projection,AI reinterpretation of photo archive,about 150 years of Stockholm photographs,wikipedia
+2019,Machine Hallucinations: NYC,Artechouse,New York,immersive installation,StyleGAN latent walk,300M public NYC photos + 113M data points (wikipedia); 100M+ (artist site),wikipedia;refikanadol.com
+2020,Quantum Memories,NGV Triennial,Melbourne,LED data painting,ML + Google AI Quantum research data,200M+ public nature images,ngv.vic.gov.au;refikanadol.com
+2021,Machine Hallucinations: Nature Dreams,König Galerie,Berlin,data sculpture,latent space merged with quantum noise,300M+ nature images,wikipedia
+2022,Living Architecture: Casa Batlló,Casa Batlló facade,Barcelona,architectural projection,AI on real-time climate sensors + archive,"about 1B images, on-site climate sensors",wikipedia
+2022,Unsupervised — Machine Hallucinations — MoMA,MoMA Gund Lobby,New York,data sculpture (LED wall),"StyleGAN2-ADA, 1024-dim embeddings, Latent Space Browser, UMAP, GPU fluid solver","138,151 MoMA collection records",moma.org;refikanadol.com;wikipedia
+2022,Sense of Healing,LuisaViaRoma x UNICEF Summer Gala,Capri,AI data sculpture,neurological data visualization,brain data from people in mental health treatment,refikanadol.com
+2023,Living Paintings,Jeffrey Deitch,Los Angeles,solo exhibition,generative landscapes,"Pacific wind forecasts, real-time weather, national park images",wikipedia;artsy
+2023,Glacier Dreams,Art Dubai,Dubai,data sculpture,generative AI,glacier data,refikanadol.com
+2023,Machine Hallucinations: Sphere,Sphere exterior,Las Vegas,LED architecture,real-time AI on NVIDIA A100,1.1M space images; 300M nature images + Las Vegas wind sensors,wikipedia;refikanadol.com
+2024,Large Nature Model: Living Archive,World Economic Forum,Davos,installation,nature-specific generative model (LNM),"images, sounds, research from NHM London, Smithsonian",wikipedia
+2024,Echoes of the Earth: Living Archive,Serpentine North,London,solo exhibition,"LNM, LiDAR, photogrammetry","flora, fungi, fauna from 16+ rainforest locations",refikanadol.com;wikipedia
+2024,Large Nature Model: Coral,United Nations Headquarters; Noor Riyadh,New York; Riyadh,installation,LNM,coral imagery,refikanadol.com
+2024,Winds of Yawanawá,NFT collection,online,NFT,weather data + community artworks,Yawanawá village weather data,wikipedia
+2025,Living Architecture: Gehry,Guggenheim Museum Bilbao,Bilbao,AI data sculpture,"fine-tuned diffusion model (LAM), 16K upscaling, Google Cloud","open-access Gehry imagery, sketches, blueprints",refikanadol.com;designboom
+2025,Living Architecture: Biophilia,Venice Architecture Biennale period,Venice,installation,generative AI,n/a in sources,refikanadol.com
+2025,"Living Memory: Messi, A Goal in Life",Christie's,online,AI data sculpture,generative AI,2009 UCL final header goal,wikipedia
+2026,Machine Dreams: Rainforest (DATALAND),"DATALAND, The Grand LA",Los Angeles,museum exhibition,"LNM, Data.Link wearables, 200-channel sound, scent","real-time signals from 16 rainforest sites, 50,000+ audio recordings",artsy;artnet;theartnewspaper

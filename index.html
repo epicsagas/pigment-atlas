@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pigment Atlas</title>
+	<style>
+		html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+		canvas { display: block; }
+		.panel { position: fixed; font: 12px/1.5 ui-monospace, Menlo, monospace; color: #8fa3c7; }
+		button { font: inherit; color: inherit; background: #0b1020cc; border: 1px solid #22304d; padding: 4px 10px; cursor: pointer; }
+		button:hover { color: #fff; }
+		button.on { color: #fff; border-color: #19c6d8; }
+		#ui { left: 20px; bottom: 18px; max-width: min(900px, calc(100vw - 40px)); }
+		#ui h1 { font-size: 13px; font-weight: 500; margin: 0 0 6px; color: #d8e4ff; letter-spacing: 0.08em; }
+		#ui h1 #status { margin-left: 10px; color: #19c6d8; letter-spacing: 0; }
+		#themes, #nav { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+		#themes button { font-size: 11px; padding: 3px 8px; opacity: 0.8; }
+		#counter { margin-left: 10px; color: #6f83a8; letter-spacing: 0; }
+		#index { inset: 0; display: none; overflow: auto; background: #000d; padding: 24px; box-sizing: border-box; }
+		#index.open { display: block; }
+		#help, #index { z-index: 10; }
+		#grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+		#grid h2 { font-size: 12px; font-weight: 500; color: #19c6d8; margin: 0 0 6px; }
+		#grid button { display: block; width: 100%; text-align: left; margin-bottom: 3px; background: #0b1020; }
+		#ref { margin: 8px 0 0; color: #c3d0ea; }
+		#note { margin: 2px 0 0; opacity: 0.55; }
+		#tools { top: 16px; right: 20px; display: flex; gap: 6px; }
+		#help { inset: 0; display: none; place-items: center; background: #000a; }
+		#help.open { display: grid; }
+		#help dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; margin: 0; padding: 20px 26px; background: #0b1020ee; border: 1px solid #22304d; }
+		#help dt { color: #19c6d8; text-align: right; }
+		#help dd { margin: 0; color: #d8e4ff; }
+		body.hide-ui #ui, body.hide-ui #tools > :not(#uiToggle) { display: none; }
+		#uiToggle { transition: opacity 0.4s; }
+		body.hide-ui #uiToggle { opacity: 0.25; background: transparent; border-color: transparent; padding: 2px 6px; font-size: 14px; }
+		body.hide-ui.pointer #uiToggle { opacity: 0.45; }
+		body.hide-ui #uiToggle:hover { opacity: 0.9; }
+		body.hide-ui:not(.pointer) { cursor: none; }
+		#toast { position: fixed; left: 50%; bottom: 40px; transform: translateX(-50%); font: 13px/1.4 ui-monospace, Menlo, monospace; color: #d8e4ff; letter-spacing: 0.06em; background: #0006; padding: 6px 14px; opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+		#toast.show { opacity: 1; }
+	</style>
+</head>
+<body>
+	<div id="ui" class="panel">
+		<h1>PIGMENT ATLAS<span id="counter"></span><span id="status"></span></h1>
+		<div id="themes"></div>
+		<div id="nav"></div>
+		<p id="ref"></p>
+		<p id="note"></p>
+	</div>
+	<div id="tools" class="panel">
+		<button id="indexBtn"></button>
+		<button id="helpBtn"></button>
+		<button id="lang"></button>
+		<button id="fs"></button>
+		<button id="uiToggle"></button>
+	</div>
+	<div id="toast"></div>
+	<div id="help" class="panel"><dl id="keys"></dl></div>
+	<div id="index" class="panel"><div id="grid"></div></div>
+	<script type="module" src="/src/main.js"></script>
+</body>
+</html>
