@@ -85,9 +85,10 @@ const riceTerraces = defineScene( {
 
 // 83: turbines on rolling hills, three blades turning in the camera plane, red aviation lights blinking.
 const ground = ( x, z ) => 0.3 * Math.sin( x * 0.7 ) * Math.cos( z * 0.5 ) - 1;
-const TURBINES = Array.from( { length: 11 }, () => {
+// Staggered rows so rotors (D = 1.2) never intersect: ~2D apart across the wind, ~2.3D between rows.
+const TURBINES = [ [ - 3.6, - 2.6 ], [ - 1.2, - 2.6 ], [ 1.2, - 2.6 ], [ 3.6, - 2.6 ], [ - 2.4, 0.2 ], [ 0, 0.2 ], [ 2.4, 0.2 ] ].map( ( [ x, z ] ) => {
 
-	const x = rand( - 4, 4 ), z = rand( - 3.2, 0.6 ), H = rand( 1.1, 1.4 );
+	const H = rand( 1.1, 1.4 );
 	return [ x, ground( x, z ) + H, z, ground( x, z ), rand( 0.8, 1.0 ), rand( 0, TAU ) ]; // ~8-10 rpm, same wind for all
 
 } );
@@ -484,7 +485,15 @@ const waterwheel = defineScene( {
 		}
 
 		if ( r < 0.9 ) return [ gauss() * 0.03, gauss() * 0.03, rand( - 0.2, 0.2 ), Math.random(), 0, 0, 1 ]; // water
-		if ( r < 0.95 ) return [ rand( - 3.4, 0.8 ), 1.6 + rand( - 0.05, 0 ), pick( [ - 0.24, 0.24, rand( - 0.24, 0.24 ) ] ), 0, 0, 0, 2 ]; // flume, ending just past the wheel top
+		if ( r < 0.925 ) return [ rand( - 3.4, 0.8 ), 1.6 + rand( - 0.05, 0 ), pick( [ - 0.24, 0.24, rand( - 0.24, 0.24 ) ] ), 0, 0, 0, 2 ]; // flume, ending just past the wheel top
+		// Trestle: timber posts carry the flume's weight down to the bank (an elevated flume never floats).
+		if ( r < 0.945 ) return [ pick( [ - 3.1, - 2.2, - 1.3, - 0.4 ] ) + rand( - 0.02, 0.02 ), rand( - 1.32, 1.55 ), pick( [ - 0.24, 0.24 ] ), 1, 0, 0, 2 ];
+		if ( r < 0.97 ) { // A-frame posts carry the axle down to the banks on both sides of the wheel
+
+			const k = Math.random(), leg = pick( [ - 0.55, 0.55 ] );
+			return [ WHEEL_C[ 0 ] + leg * k, WHEEL_C[ 1 ] + ( - 1.32 - WHEEL_C[ 1 ] ) * k, pick( [ - 0.34, 0.34 ] ), 1, 0, 0, 2 ]; // b.x = 1 marks timber
+
+		}
 		return [ rand( - 4, 4 ), - 1.32 - rand( 0, 0.1 ), pick( [ - 0.6, 0.6 ] ) + rand( - 0.1, 0.1 ), 0, 0, 0, 2 ]; // banks
 
 	},
@@ -518,7 +527,7 @@ const waterwheel = defineScene( {
 		const water = mix( color( 0x3fa8d8 ), color( 0xe8fbff ), splash.mul( 0.7 ) );
 		const wood = color( 0xb07a45 ).mul( 0.7 );
 		const bank = color( 0x6b4a2e ).mul( 0.45 );
-		return mix( mix( wood, water, step( 0.5, b.w ) ), bank, step( 1.5, b.w ) );
+		return mix( mix( mix( wood, water, step( 0.5, b.w ) ), bank, step( 1.5, b.w ) ), wood, step( 1.5, b.w ).mul( step( 0.5, b.x ) ) );
 
 	},
 	alpha: 0.35,

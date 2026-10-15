@@ -193,6 +193,13 @@ const solarCorona = defineScene( {
 		return mix( surface, loop, b.w );
 
 	},
+	// Solid body: an opaque black sphere just inside the visible surface hides its far side and anything behind it.
+	extras( { scene } ) {
+
+		const body = new THREE.Mesh( new THREE.SphereGeometry( SUN_R * 0.97, 64, 32 ), new THREE.MeshBasicNodeMaterial( { color: 0x000000 } ) );
+		scene.add( body );
+
+	},
 	alpha: 0.3,
 	size: 0.011,
 	spin: 0.04
@@ -250,6 +257,15 @@ const planetaryRings = defineScene( {
 		return mix( planet, color( 0xe8dcc0 ).mul( b.y ), b.w );
 
 	},
+	// Solid body: an opaque black sphere just inside the visible surface hides its far side and anything behind it.
+	extras( { scene } ) {
+
+		const body = new THREE.Mesh( new THREE.SphereGeometry( 0.97, 64, 32 ), new THREE.MeshBasicNodeMaterial( { color: 0x000000 } ) );
+		body.scale.y = 0.9; // oblate like the point surface (y * 0.9)
+		body.rotation.x = TILT; // same tilt as the ring plane
+		scene.add( body );
+
+	},
 	alpha: 0.32,
 	size: 0.01
 } );
@@ -282,7 +298,8 @@ const supernova = defineScene( {
 		const s = fract( t.div( 12 ) );
 		const finger = mx_noise_float( a.mul( 3.5 ) ).mul( 0.5 ).add( 0.5 );
 		const element = mix( mix( color( 0x2fe0c8 ), color( 0xff3b4a ), step( 0.4, b.y ) ), color( 0xffc24a ), step( 0.82, b.y ) );
-		const shell = mix( color( 0xdfe9ff ).mul( 2 ), element.mul( finger.mul( finger ).mul( 1.6 ).add( 0.2 ) ), smoothstep( 0.04, 0.3, s ) )
+		// Initial flash kept below bloom saturation so the collapsing core reads as a point-like burst.
+		const shell = mix( color( 0xdfe9ff ).mul( 0.8 ), element.mul( finger.mul( finger ).mul( 1.6 ).add( 0.2 ) ), smoothstep( 0.04, 0.3, s ) )
 			.mul( pow( s.oneMinus(), 0.8 ) );
 		return mix( shell, color( 0xbfe0ff ).mul( 2 ), b.z );
 
@@ -450,7 +467,7 @@ const orrery = defineScene( {
 		const g = unit().multiplyScalar( Math.cbrt( Math.random() ) );
 		if ( i < n * 0.1 ) return [ g.x * 0.22, g.y * 0.22, g.z * 0.22, 0, 0, 0, 0 ];
 		const [ A, e, w, size ] = PLANETS[ Math.floor( rand( 0, PLANETS.length ) ) ];
-		if ( i < n * 0.4 ) return [ g.x * size, g.y * size, g.z * size, A, e, w * 0.35, PLANETS.length ];
+		if ( i < n * 0.4 ) return [ g.x * size, g.y * size, g.z * size, A, e, w * 0.35, ( A * 9.1 ) % TAU ]; // distinct starting longitudes, no artificial alignment
 		return [ gauss() * 0.004, gauss() * 0.004, gauss() * 0.004, A, e, 0, rand( 0, TAU ) ];
 
 	},

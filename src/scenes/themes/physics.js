@@ -40,36 +40,39 @@ const lorenzAttractor = defineScene( {
 	spin: 0.06
 } );
 
-// 92 Pendulum wave: pendulum k completes (8 + k) swings every 16 s, so the row realigns periodically.
-const PENDULUMS = 24, STRING = 1500, BOB = 4500;
+// 92 Pendulum wave: pendulum k completes (N0 + k) swings every CYCLE seconds, so the row realigns periodically.
+// Real rigs keep lengths within a few times of each other (N0 large); L = g / (2*pi*f)^2, drawn at SCALE units per metre.
+const PENDULUMS = 24, STRING = 1500, BOB = 4500, BAR = 3000;
+const PEND_N0 = 30, PEND_CYCLE = 40, PEND_SCALE = 2.6, BAR_Y = 0.9;
 
 const pendulumWave = defineScene( {
 	meta: {
 		title: { ko: '진자 파동', en: 'Pendulum Wave' },
 		ref: { ko: '길이가 조금씩 다른 진자들이 위상차로 뱀 같은 파동과 정렬을 반복한다', en: 'Pendulums of slightly different lengths drift in phase, forming snakes, then realigning' }
 	},
-	camera: [ 2.4, 1.2, 4.2 ],
-	count: PENDULUMS * ( STRING + BOB ),
+	camera: [ 0.8, 2.8, 3.6 ],
+	count: PENDULUMS * ( STRING + BOB ) + BAR,
 	init( i ) {
 
+		if ( i >= PENDULUMS * ( STRING + BOB ) ) return [ rand( - 2.2, 2.2 ), 0, 0, 0, 0, 0, 0 ]; // common support bar
 		const k = Math.floor( i / ( STRING + BOB ) ), j = i % ( STRING + BOB );
-		const f = ( 8 + k ) / 16, L = 9.81 / ( TAU * f ) ** 2 * 0.55;
+		const f = ( PEND_N0 + k ) / PEND_CYCLE, L = 9.81 / ( TAU * f ) ** 2 * PEND_SCALE;
 		const x = ( k / ( PENDULUMS - 1 ) - 0.5 ) * 4;
 		if ( j < STRING ) return [ x, 0, 0, f, L, 0, j / STRING ];
-		const r = 0.07 * Math.cbrt( Math.random() ), th = rand( 0, TAU ), ph = Math.acos( rand( - 1, 1 ) );
+		const r = 0.045 * Math.cbrt( Math.random() ), th = rand( 0, TAU ), ph = Math.acos( rand( - 1, 1 ) );
 		return [ x + r * Math.sin( ph ) * Math.cos( th ), r * Math.cos( ph ), r * Math.sin( ph ) * Math.sin( th ), f, L, 1, 1 ];
 
 	},
 	position: ( { a, b, t } ) => {
 
-		// Small-angle swing (0.25 rad): only there is T = 2*pi*sqrt(L/g) amplitude-independent, so the row realigns every 16 s.
+		// Small-angle swing (0.25 rad): only there is T = 2*pi*sqrt(L/g) amplitude-independent, so the row realigns every 40 s.
 		const theta = cos( t.mul( b.x ).mul( TAU ) ).mul( 0.25 );
 		const d = b.w.mul( b.y );
-		return vec3( a.x, d.mul( cos( theta ) ).negate().add( 1.3 ).add( a.y ), d.mul( sin( theta ) ).add( a.z ) );
+		return vec3( a.x, d.mul( cos( theta ) ).negate().add( BAR_Y ).add( a.y ), d.mul( sin( theta ) ).add( a.z ) );
 
 	},
-	color: ( { a, b } ) => gradient( a.x.div( 4 ).add( 0.5 ), [ 0x12d6b0, 0x9bff4f, 0xfff07a ] ).mul( mix( 0.2, 1.1, b.z ) ),
-	alpha: 0.4,
+	color: ( { a, b } ) => gradient( a.x.div( 4 ).add( 0.5 ), [ 0x12d6b0, 0x9bff4f, 0xfff07a ] ).mul( mix( 0.25, 0.8, b.z ) ),
+	alpha: 0.35,
 	size: 0.011
 } );
 

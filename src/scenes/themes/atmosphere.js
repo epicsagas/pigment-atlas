@@ -1,4 +1,5 @@
 // Theme 2: Atmosphere & Weather — large-scale weather phenomena.
+import * as THREE from 'three/webgpu';
 import { vec3, sin, cos, mix, fract, mod, step, smoothstep, exp, max, color, mx_noise_float, mx_noise_vec3 } from 'three/tsl';
 import { defineScene, gradient, TAU, rand } from '../../lib/defineScene.js';
 import { gauss } from '../../lib/points.js';
@@ -36,6 +37,7 @@ const aurora = defineScene( {
 
 // 13 Lightning: five branching channels, each flashing on its own clock and lighting its cloud base.
 const BOLT_SEGS = [];
+const BOLT_GROUND = []; // [ x, z, phase ] where each main channel meets the ground
 for ( let bolt = 0; bolt < 5; bolt ++ ) {
 
 	const phase = bolt / 5 + rand( 0, 0.08 );
@@ -51,6 +53,8 @@ for ( let bolt = 0; bolt < 5; bolt ++ ) {
 
 		}
 
+		if ( depth === 0 ) BOLT_GROUND.push( [ cur[ 0 ], cur[ 2 ], phase ] );
+
 	};
 
 	grow( [ rand( - 2, 2 ), 1.7, rand( - 0.5, 0.5 ) ], gauss() * 0.2, 0 );
@@ -62,12 +66,19 @@ const lightning = defineScene( {
 		title: { ko: '번개', en: 'Lightning' },
 		ref: { ko: '구름과 땅 사이 전위차가 갈라지는 방전 경로로 한순간에 터진다', en: 'Charge between cloud and ground bursts along a branching discharge path' }
 	},
-	camera: [ 0, 0, 5.2 ],
-	count: 120_000,
+	camera: [ 0, 0, 5.8 ],
+	count: 130_000,
 	init( i, n ) {
 
 		const [ p, q, phase, depth ] = BOLT_SEGS[ Math.floor( Math.random() * BOLT_SEGS.length ) ];
 		if ( i < n * 0.25 ) return [ p[ 0 ] + gauss() * 0.7, rand( 1.6, 2.2 ), gauss() * 0.5, phase, 1, 0 ]; // cloud base
+		if ( i < n * 0.37 ) {
+
+			// Ground under the storm, lit around each strike point when its bolt fires.
+			const [ gx, gz, gphase ] = BOLT_GROUND[ Math.floor( Math.random() * BOLT_GROUND.length ) ];
+			return [ gx + gauss() * 1.1, - 1.75, gz + gauss() * 0.6, gphase, 2, 0 ];
+
+		}
 		const s = Math.random(), j = 0.008 * ( 1 + depth );
 		return [ p[ 0 ] + ( q[ 0 ] - p[ 0 ] ) * s + gauss() * j, p[ 1 ] + ( q[ 1 ] - p[ 1 ] ) * s, p[ 2 ] + ( q[ 2 ] - p[ 2 ] ) * s + gauss() * j, phase, 0, depth ];
 
@@ -78,8 +89,9 @@ const lightning = defineScene( {
 		const f = fract( t.mul( 0.4 ).add( b.x ) );
 		const strike = exp( f.mul( - 9 ) ).mul( sin( f.mul( 90 ) ).mul( 0.4 ).add( 0.6 ) );
 		const bolt = mix( color( 0xc9b8ff ), color( 0xffffff ), step( b.z, 0.5 ) ).mul( strike.mul( 2.2 ) ).mul( b.z.mul( - 0.3 ).add( 1 ) );
-		const cloud = mix( color( 0x221d38 ), color( 0x9d8cff ), strike ).mul( strike.add( 0.12 ) );
-		return mix( bolt, cloud, b.y );
+		const cloud = mix( color( 0x221d38 ), color( 0x9d8cff ), strike ).mul( strike.add( 0.3 ) );
+		const ground = mix( color( 0x2a3040 ), color( 0xb9b0ff ), strike ).mul( strike.mul( 0.9 ).add( 0.4 ) );
+		return mix( mix( bolt, cloud, step( 0.5, b.y ) ), ground, step( 1.5, b.y ) );
 
 	},
 	alpha: 0.45,
@@ -92,11 +104,13 @@ const tornado = defineScene( {
 		title: { ko: '토네이도', en: 'Tornado' },
 		ref: { ko: '좁아질수록 빨라지는 회전 기둥이 땅의 잔해를 감아올린다', en: 'A rotating column that spins faster as it narrows, lifting debris from the ground' }
 	},
-	camera: [ 0, 0, 5.4 ],
+	camera: [ 0, 0.1, 6 ],
 	count: 160_000,
-	init: ( i, n ) => i < n * 0.82
+	init: ( i, n ) => i < n * 0.62
 		? [ Math.random(), rand( 0, TAU ), Math.abs( gauss() ) * 0.06, 0, Math.random() ]
-		: [ Math.random(), rand( 0, TAU ), rand( 0.3, 1.4 ), 1, Math.random() ],
+		: i < n * 0.8
+			? [ Math.random(), rand( 0, TAU ), rand( 0.3, 1.4 ), 1, Math.random() ]
+			: [ Math.sqrt( Math.random() ), rand( 0, TAU ), gauss() * 0.07, 0, Math.random(), 1 ], // wall cloud (b.z = 1)
 	position: ( { a, b, t } ) => {
 
 		const isDebris = b.x;
@@ -106,7 +120,12 @@ const tornado = defineScene( {
 		const th = a.y.add( t.mul( 0.35 ).div( r.mul( r ).add( 0.04 ) ) );
 		const wobble = sin( y.mul( 3.5 ).add( t.mul( 0.6 ) ) ).mul( 0.25 ).mul( y.oneMinus() );
 		// z = -sin: counter-clockwise seen from above, i.e. cyclonic (Northern Hemisphere).
-		return vec3( cos( th ).mul( r ).add( wobble ), y.mul( 3.4 ).sub( 1.7 ), sin( th ).mul( r ).mul( - 1 ) );
+		const column = vec3( cos( th ).mul( r ).add( wobble ), y.mul( 3.4 ).sub( 1.7 ), sin( th ).mul( r ).mul( - 1 ) );
+		// The funnel descends from a rotating wall cloud (mesocyclone base), which turns the same way but slower.
+		const rc = a.x.mul( 2.8 );
+		const thc = a.y.add( t.mul( 0.35 ).div( rc.mul( rc ).add( 1.2 ) ) );
+		const cloud = vec3( cos( thc ).mul( rc ), exp( rc.mul( rc ).mul( - 0.6 ) ).mul( - 0.2 ).add( 1.8 ).add( a.z ), sin( thc ).mul( rc ).mul( - 1 ) );
+		return mix( column, cloud, b.z );
 
 	},
 	color: ( { a, b, t } ) => {
@@ -114,7 +133,9 @@ const tornado = defineScene( {
 		const bands = mx_noise_float( vec3( a.y.mul( 2 ), a.x.mul( 6 ).sub( t.mul( 0.5 ) ), 0 ) ).mul( 0.5 ).add( 0.6 );
 		// Updraft carries matter up and out of the top; fade there instead of popping back to the ground.
 		const y = mix( fract( a.x.add( t.mul( 0.12 ) ) ), fract( a.x.add( t.mul( 0.3 ) ) ), b.x );
-		return mix( gradient( a.x, [ 0x3a2a1c, 0x6d6a6a, 0xb9bcc6 ] ).mul( bands ), color( 0xb5732f ), b.x ).mul( smoothstep( 1, 0.85, y ) );
+		const funnel = mix( gradient( a.x, [ 0x3a2a1c, 0x6d6a6a, 0xb9bcc6 ] ).mul( bands ), color( 0xb5732f ), b.x ).mul( smoothstep( 1, 0.85, y ) );
+		const cloud = color( 0x7a8294 ).mul( mx_noise_float( vec3( a.x.mul( 4 ), a.y.mul( 2 ), t.mul( 0.1 ) ) ).mul( 0.4 ).add( 0.8 ) ).mul( smoothstep( 1, 0.6, a.x ) );
+		return mix( funnel, cloud, b.z );
 
 	},
 	alpha: 0.3,
@@ -310,10 +331,16 @@ const jetStream = defineScene( {
 	color: ( { a, b, t } ) => {
 
 		const land = step( 0.15, mx_noise_float( a.mul( 1.2 ) ) );
-		const globe = mix( color( 0x0a1c3a ), color( 0x1f4a32 ), land ).mul( 0.5 );
+		const globe = mix( color( 0x0a1c3a ), color( 0x1f4a32 ), land ).mul( 1.4 );
 		const lon = a.x.add( t.mul( b.y.mul( 0.15 ).add( 0.35 ) ) );
 		const pulse = smoothstep( 0.6, 1, fract( lon.mul( 3 ).sub( t ) ) );
 		return mix( globe, mix( color( 0xff4f6d ), color( 0xffb547 ), pulse ).mul( pulse.add( 0.35 ) ), b.x );
+
+	},
+	// The planet is opaque: the far side of the jet stream must be hidden behind it.
+	extras( { scene } ) {
+
+		scene.add( new THREE.Mesh( new THREE.SphereGeometry( 1.58, 64, 32 ), new THREE.MeshBasicNodeMaterial( { color: 0x000000 } ) ) );
 
 	},
 	alpha: 0.35,

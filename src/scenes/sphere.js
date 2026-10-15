@@ -29,6 +29,8 @@ export function create() {
 
 	// Bright regions bulge outward slightly, like pigment welling up.
 	scene.add( makePoints( COUNT, { position: p.add( normalize( p ).mul( n.mul( 0.12 ) ) ), color: tint, alpha: 0.5, size: 0.016 } ) );
+	// The Sphere is a solid building: an opaque core just inside the LED shell hides the far hemisphere.
+	scene.add( new THREE.Mesh( new THREE.SphereGeometry( 1.97, 96, 48 ), new THREE.MeshBasicNodeMaterial( { color: 0x000000 } ) ) );
 
 	return {
 		scene,

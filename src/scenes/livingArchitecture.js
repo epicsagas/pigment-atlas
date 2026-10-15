@@ -40,6 +40,21 @@ export function create() {
 
 	scene.add( makePoints( COUNT, { position: attr( pos ), color: tint, alpha: 0.4, size: 0.011 } ) );
 
+	// Facades are solid: triangulate each sail's point grid into a black surface so far sails hide behind near ones.
+	// polygonOffset pushes it slightly back so the projected points on the same surface stay visible.
+	const index = [];
+	for ( let s = 0; s < SAILS; s ++ ) for ( let v = 0; v < V - 1; v ++ ) for ( let u = 0; u < U - 1; u ++ ) {
+
+		const k = s * U * V + v * U + u;
+		index.push( k, k + 1, k + U, k + 1, k + U + 1, k + U );
+
+	}
+
+	const shell = new THREE.BufferGeometry();
+	shell.setAttribute( 'position', new THREE.BufferAttribute( pos, 3 ) );
+	shell.setIndex( index );
+	scene.add( new THREE.Mesh( shell, new THREE.MeshBasicNodeMaterial( { color: 0x000000, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: 2, polygonOffsetUnits: 2 } ) ) );
+
 	return {
 		scene,
 		update( delta, elapsed ) {

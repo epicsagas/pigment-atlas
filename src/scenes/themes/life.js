@@ -5,6 +5,14 @@ import { defineScene, gradient, TAU, rand } from '../../lib/defineScene.js';
 import { gauss } from '../../lib/points.js';
 import * as rainforest from '../rainforest.js';
 
+// Hash-based pseudo-random in [0, 1). Weyl sequences ((n * m) % 1) line points up in visible 3D rows.
+const hr = ( n ) => {
+
+	const x = Math.sin( n * 127.1 + 311.7 ) * 43758.5453;
+	return x - Math.floor( x );
+
+};
+
 // 32 Tree Growth: branches extend from the trunk outward, leaves open last.
 function growTree() {
 
@@ -152,14 +160,14 @@ const fireflies = defineScene( {
 		if ( i < n * 0.65 ) { // grass blades, 50 points each
 
 			const blade = Math.floor( i / 50 ), k = ( i % 50 ) / 49;
-			const bx = ( ( blade * 0.618 ) % 1 - 0.5 ) * 6.4, bz = ( ( blade * 0.377 ) % 1 - 0.5 ) * 4, hgt = 0.3 + ( ( blade * 0.711 ) % 1 ) * 0.5;
+			const bx = ( hr( blade * 3 ) - 0.5 ) * 6.4, bz = ( hr( blade * 3 + 1 ) - 0.5 ) * 4, hgt = 0.3 + hr( blade * 3 + 2 ) * 0.5;
 			return [ bx + k * k * 0.08, - 1.2 + k * hgt, bz, 0, 1 ];
 
 		}
 
-		const fly = Math.floor( i / 8 ), ph = ( fly * 0.6180339 ) % 1;
-		const r = ( m ) => ( ( fly * m ) % 1 - 0.5 );
-		return [ r( 0.7548 ) * 6 + gauss() * 0.015, r( 0.5698 ) * 2 + 0.1 + gauss() * 0.015, r( 0.4392 ) * 4 + gauss() * 0.015, ph, 0 ];
+		const fly = Math.floor( i / 8 ), ph = hr( fly * 5 + 0.5 );
+		const r = ( m ) => hr( fly * 5 + m ) - 0.5;
+		return [ r( 1 ) * 6 + gauss() * 0.015, r( 2 ) * 2 + 0.1 + gauss() * 0.015, r( 3 ) * 4 + gauss() * 0.015, ph, 0 ];
 
 	},
 	position: ( { a, b, t } ) => {
@@ -226,8 +234,14 @@ const birdMigration = defineScene( {
 	color: ( { a, b } ) => {
 
 		const land = smoothstep( 0.0, 0.15, mx_noise_float( a.mul( 1.6 ) ) );
-		const globe = mix( color( 0x0b2a4a ), color( 0x2f6b4f ), land ).mul( 0.5 );
+		const globe = mix( color( 0x0b2a4a ), color( 0x2f6b4f ), land ).mul( 1.6 );
 		return mix( globe, color( 0xffd9a0 ).mul( 1.3 ), step( 0, b.w ) );
+
+	},
+	// The Earth is opaque: flocks on the far side must be hidden behind it.
+	extras( { scene } ) {
+
+		scene.add( new THREE.Mesh( new THREE.SphereGeometry( 0.985, 64, 32 ), new THREE.MeshBasicNodeMaterial( { color: 0x06182c } ) ) );
 
 	},
 	alpha: 0.16,
@@ -297,13 +311,13 @@ const autumnLeaves = defineScene( {
 		ref: { ko: '붉고 노란 잎이 바람에 흔들리며 빙글빙글 회전해 떨어진다', en: 'Red and yellow leaves flutter and spin as they fall through the air' }
 	},
 	camera: [ 0, 0, 5 ],
-	count: 120_000,
+	count: 40_000, // ~1000 leaves: a scattered fall, not a wall of foliage
 	init( i ) {
 
 		const leaf = Math.floor( i / 40 );
-		const r = ( m ) => ( leaf * m ) % 1;
+		const r = ( m ) => hr( leaf * 7 + m );
 		const lx = rand( - 1, 1 ), ly = ( Math.random() * 2 - 1 ) * Math.sqrt( 1 - lx * lx ) * ( i % 40 < 6 ? 0.05 : 1 );
-		return [ ( r( 0.7548 ) - 0.5 ) * 6, ( r( 0.5698 ) - 0.5 ) * 3, lx * 0.07, ly * 0.04, r( 0.618 ), 0.04 + r( 0.4392 ) * 0.05, r( 0.3141 ) ];
+		return [ ( r( 1 ) - 0.5 ) * 6, ( r( 2 ) - 0.5 ) * 3, lx * 0.07, ly * 0.04, r( 3 ), 0.04 + r( 4 ) * 0.05, r( 5 ) ];
 
 	},
 	position: ( { a, b, t } ) => {

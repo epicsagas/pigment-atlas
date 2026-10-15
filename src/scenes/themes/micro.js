@@ -251,6 +251,13 @@ const virusCapsid = defineScene( {
 		return mix( shell, color( 0x2fd5c0 ).mul( 0.35 ), b.y );
 
 	},
+	// Solid body: an opaque black sphere just inside the protein shell; the genome is enclosed and hidden, as in reality hides its far side and anything behind it.
+	extras( { scene } ) {
+
+		const body = new THREE.Mesh( new THREE.SphereGeometry( 0.95, 64, 32 ), new THREE.MeshBasicNodeMaterial( { color: 0x000000 } ) );
+		scene.add( body );
+
+	},
 	alpha: 0.32,
 	size: 0.011,
 	spin: 0.15
@@ -416,6 +423,14 @@ const COLONIES = Array.from( { length: 7 }, ( _, k ) => ( {
 	R: rand( 0.35, 0.85 ), strain: k % 3 / 2, p: [ rand( 0, TAU ), rand( 0, TAU ), rand( 0, TAU ) ]
 } ) );
 const DISH_R = 2.2;
+// Colonies stop growing where they meet a neighbour or the dish wall (contact inhibition), so fronts never overlap.
+// Fingers reach 1.35 R, so cap R at half the gap to the nearest colony and inside the rim.
+COLONIES.forEach( ( col ) => {
+
+	const gap = Math.min( ...COLONIES.filter( ( o ) => o !== col ).map( ( o ) => Math.hypot( o.c[ 0 ] - col.c[ 0 ], o.c[ 1 ] - col.c[ 1 ] ) ) );
+	col.R = Math.min( col.R, gap / ( 2 * 1.35 ) * 0.95, ( DISH_R - Math.hypot( ...col.c ) ) / 1.35 * 0.95 );
+
+} );
 
 const bacterialColony = defineScene( {
 	meta: {

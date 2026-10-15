@@ -1,4 +1,5 @@
 // Theme 8: City — urban infrastructure and street life.
+import * as THREE from 'three/webgpu';
 import { vec2, vec3, sin, cos, mix, fract, floor, step, smoothstep, clamp, exp, abs, max, min, mod, length, hash, color, mx_noise_float, mx_noise_vec3 } from 'three/tsl';
 import { defineScene, gradient, TAU, rand } from '../../lib/defineScene.js';
 import * as sphere from '../sphere.js';
@@ -122,6 +123,19 @@ const skylineWindows = defineScene( {
 
 	},
 	position: ( { a } ) => a,
+	// Towers are solid: a black box just behind each window plane hides the rows behind it.
+	extras( { scene } ) {
+
+		const body = new THREE.MeshBasicNodeMaterial( { color: 0x000000 } );
+		for ( const b of BUILDINGS ) {
+
+			const box = new THREE.Mesh( new THREE.BoxGeometry( b.w, b.h, 0.3 ), body );
+			box.position.set( b.x, - 1.6 + b.h / 2, b.z - 0.155 );
+			scene.add( box );
+
+		}
+
+	},
 	color: ( { b, t } ) => {
 
 		const slot = floor( t.mul( 0.2 ).add( fract( b.x.mul( 0.618 ) ).mul( 5 ) ) );

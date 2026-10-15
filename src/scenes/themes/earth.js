@@ -1,6 +1,6 @@
 // Theme 5: Earth & Geology — landforms and geological processes.
 import * as THREE from 'three/webgpu';
-import { vec2, vec3, sin, cos, mix, fract, smoothstep, step, clamp, max, exp, pow, mod, length, color, mx_noise_float, mx_fractal_noise_float } from 'three/tsl';
+import { vec2, vec3, sin, cos, mix, fract, smoothstep, step, clamp, max, exp, pow, mod, length, color, positionLocal, mx_noise_float, mx_fractal_noise_float } from 'three/tsl';
 import { defineScene, gradient, TAU, rand } from '../../lib/defineScene.js';
 import { gauss } from '../../lib/points.js';
 
@@ -17,7 +17,7 @@ const volcano = defineScene( {
 		title: { ko: '화산 분화', en: 'Volcano' },
 		ref: { ko: '분화구에서 솟구친 분출물이 포물선을 그리며 식어 떨어지고 용암이 산허리를 타고 흐른다', en: 'Ejecta arc out of the crater and cool as they fall while lava runs down the flanks' }
 	},
-	camera: [ 0, 1.3, 6 ],
+	camera: [ 0, 1.0, 8 ],
 	count: 170_000,
 	init( i, n ) {
 
@@ -31,8 +31,9 @@ const volcano = defineScene( {
 
 		}
 
-		const ang = rand( 0, TAU ), hs = rand( 0.05, 0.7 );
-		return [ Math.cos( ang ) * hs, rand( 2.2, 3.6 ), Math.sin( ang ) * hs, 1, Math.random() ];
+		// Launch speed and angle from vertical (not independent box-uniform components) give an umbrella-shaped fountain.
+		const ang = rand( 0, TAU ), tilt = Math.sqrt( Math.random() ) * 0.45, v = rand( 2.0, 2.9 );
+		return [ Math.cos( ang ) * Math.sin( tilt ) * v, Math.cos( tilt ) * v, Math.sin( ang ) * Math.sin( tilt ) * v, 1, Math.random() ]; // apex <= 1.25 + 2.9^2 / 3.2 ~ 3.9
 
 	},
 	position: ( { a, b, t } ) => {
@@ -54,6 +55,15 @@ const volcano = defineScene( {
 		const glow = b.y.mul( sin( t.mul( 2 ).add( b.z.mul( 6 ) ) ).mul( 0.3 ).add( 0.7 ) ).add( smoothstep( 1.1, 1.25, b.z ).mul( 0.8 ) );
 		const rock = mix( color( 0x2b2323 ).mul( 0.6 ), color( 0xff5a1f ), clamp( glow, 0, 1 ) );
 		return mix( rock, ejecta, b.x );
+
+	},
+	extras( { scene } ) {
+
+		// Solid cone just inside the surface points: the far flank, its lava and bombs behind it stay hidden.
+		const cone = new THREE.Mesh( new THREE.CylinderGeometry( 0.13, 1.84, 1.25, 64 ), new THREE.MeshBasicNodeMaterial( { color: 0x000000 } ) );
+		cone.position.y = 0.625;
+		scene.add( cone );
+		scene.position.y = - 1.3; // frame the cone low so the full eruption column fits
 
 	},
 	alpha: 0.35,
@@ -337,6 +347,14 @@ const stalactiteCave = defineScene( {
 } );
 
 // 48 Mountain Range: a low flight over ridged peaks with snow caps and green valleys.
+// Ridged fBm: sharp crests where the noise crosses zero, broad valleys elsewhere (no flat high plateaus).
+const ridgeHeight = ( x, z, t ) => {
+
+	const n = mx_fractal_noise_float( vec3( x.mul( 0.35 ), 0, z.sub( t.mul( 0.25 ) ).mul( 0.35 ) ), 5 );
+	const r = clamp( n.abs().mul( 2.2 ).oneMinus(), 0, 1 );
+	return r.mul( r ).mul( r ).mul( 1.25 ).sub( 1.0 ); // peaks top out at 0.25, below the 0.9 flight height
+
+};
 const mountainRange = defineScene( {
 	meta: {
 		title: { ko: '산맥', en: 'Mountain Range' },
@@ -346,21 +364,18 @@ const mountainRange = defineScene( {
 	count: 172_800,
 	init( i ) {
 
-		return [ ( ( i % 480 ) / 479 - 0.5 ) * 6, 0, Math.floor( i / 480 ) / 360 * 6 - 4 ];
+		return [ ( ( i % 600 ) / 599 - 0.5 ) * 8, 0, Math.floor( i / 600 ) / 288 * 5 - 4 ]; // x in [-4, 4], z in [-4, 1]
 
 	},
-	position: ( { a, t } ) => {
+	position: ( { a, t } ) => vec3( a.x, ridgeHeight( a.x, a.z, t ), a.z ),
+	color: ( { a, t } ) => gradient( ridgeHeight( a.x, a.z, t ).add( 1.0 ).div( 1.25 ), [ 0x0f3d2e, 0x3f5f4a, 0x8a8f98, 0xffffff ] ).mul( 0.65 ).mul( smoothstep( - 4, - 2, a.z ) ),
+	extras( { scene, t } ) {
 
-		const n = mx_fractal_noise_float( vec3( a.x.mul( 0.35 ), 0, a.z.sub( t.mul( 0.25 ) ).mul( 0.35 ) ), 5 );
-		const r = n.abs().oneMinus();
-		return vec3( a.x, r.mul( r ).mul( 1.4 ).sub( 0.9 ), a.z );
-
-	},
-	color: ( { a, t } ) => {
-
-		const n = mx_fractal_noise_float( vec3( a.x.mul( 0.35 ), 0, a.z.sub( t.mul( 0.25 ) ).mul( 0.35 ) ), 5 );
-		const r = n.abs().oneMinus();
-		return gradient( r.mul( r ), [ 0x0f3d2e, 0x3f5f4a, 0x8a8f98, 0xffffff ] ).mul( 0.65 ).mul( smoothstep( - 4, - 2, a.z ) );
+		// Opaque terrain just under the points so near ridges hide the ones behind (mountains are not see-through).
+		const geo = new THREE.PlaneGeometry( 8, 5, 400, 250 ).rotateX( - Math.PI / 2 ).translate( 0, 0, - 1.5 );
+		const mat = new THREE.MeshBasicNodeMaterial( { color: 0x000000 } );
+		mat.positionNode = vec3( positionLocal.x, ridgeHeight( positionLocal.x, positionLocal.z, t ).sub( 0.03 ), positionLocal.z );
+		scene.add( new THREE.Mesh( geo, mat ) );
 
 	},
 	alpha: 0.35,
